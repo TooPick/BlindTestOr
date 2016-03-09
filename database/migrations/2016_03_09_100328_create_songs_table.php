@@ -12,7 +12,13 @@ class CreateSongsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('songs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('link');
+            $table->string('title');
+            $table->string('artist');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -22,6 +28,6 @@ class CreateSongsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('songs');
     }
 }
