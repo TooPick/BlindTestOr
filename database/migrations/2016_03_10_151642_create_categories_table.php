@@ -18,6 +18,14 @@ class CreateCategoriesTable extends Migration
             $table->string('slug');
             $table->timestamps();
         });
+
+        Schema::create('category_song', function(Blueprint $table) {
+            $table->increments('id');
+            $table->integer('song_id')->unsigned()->index();
+            $table->integer('category_id')->unsigned()->index();
+            $table->foreign('song_id')->references('id')->on('songs')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+        });
     }
 
     /**
@@ -27,6 +35,7 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
+        Schema::drop('category_song');
         Schema::drop('categories');
     }
 }

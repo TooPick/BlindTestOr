@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
+    protected $fillable = ['name', 'type', 'response_time', 'finished'];
+
     public function scores()
     {
     	return $this->hasMany('App\Score');

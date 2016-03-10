@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Score extends Model
 {
 	public $timestamps = false;
+
+    protected $fillable = ['score'];
 	
     public function user()
     {
