@@ -11,13 +11,7 @@
 |
 */
 
-Route::get('/', array('as' => 'home', 'uses' =>'AppliController@index'));
 
-Route::get('/login', array('as' => 'login', 'uses' =>'AppliController@login'));
-
-Route::get('/game/{type}', array('as' => 'categories', 'uses' =>'AppliController@categories'));
-
-Route::get('/game/{type}/{category}', array('as' => 'game', 'uses' =>'AppliController@game'));
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +24,12 @@ Route::get('/game/{type}/{category}', array('as' => 'game', 'uses' =>'AppliContr
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/', array('as' => 'home', 'uses' =>'AppliController@index'));
+
+	Route::get('/game/{type}', array('as' => 'categories', 'uses' =>'AppliController@categories'));
+
+	Route::get('/game/{type}/{category}', array('as' => 'game', 'uses' =>'AppliController@game'));
 });

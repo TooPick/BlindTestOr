@@ -43,7 +43,9 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav nav-justified">
                         <li><a href="{{ URL::route('home') }}">Accueil</a></li>
-                        <li><a href="#">Inscription</a></li>
+                        @if (Auth::guest())
+                            <li><a href="{{ url('/register') }}">Inscription</a></li>
+                        @endif
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Jeu  <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -51,7 +53,11 @@
                                 <li><a href="{{ URL::route('categories', 'multi') }}">Multijoueur</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{ URL::route('login') }}">Connexion</a></li>
+                        @if (Auth::guest())
+                            <li><a href="{{ url('/login') }}">Connexion</a></li>
+                        @else
+                            <li><a href="{{ url('/logout') }}">Déconnexion</a></li>
+                        @endif
                     </ul>
                 </div>
             </nav>

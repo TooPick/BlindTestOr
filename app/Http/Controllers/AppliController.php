@@ -6,17 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\User;
+
+use Auth;
 
 class AppliController extends Controller
 {
     public function index()
     {
         return view('home');
-    }
-
-    public function login()
-    {
-        return view('login');
     }
 
     public function categories($type)
