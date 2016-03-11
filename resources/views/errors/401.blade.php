@@ -9,9 +9,9 @@
         <div class="row">
             <div class="col-sm-12 col-lg-12">
                 <div class="text-center col-sm-12 col-lg-12">
-                    <h1 class="error-title">Oops, 404 !</h1>
+                    <h1 class="error-title">Oops, 401 !</h1>
                     <p class="lead">
-                        La page que vous recherchez n'existe pas (ou plus).
+                        Vous n'êtes pas autorisé à accéder à cette page.
                     </p>
                 </div>
             </div>

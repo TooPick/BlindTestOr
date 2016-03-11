@@ -67,6 +67,11 @@
             <!-- Site footer -->
             <div class="footer">
                 <p>&copy; BlindTestOr 2016</p>
+                @if(!Auth::guest())
+                    @if (Auth::user()->admin == 1)
+                        <p><a href="{{ URL::route('admin_home') }}">Administration</a></p>
+                    @endif
+                @endif
             </div>
 
         </div> <!-- /container -->

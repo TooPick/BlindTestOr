@@ -27,9 +27,25 @@
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
+    /*
+    *
+    * Application
+    *
+    */
+
     Route::get('/', array('as' => 'home', 'uses' =>'AppliController@index'));
 
 	Route::get('/game/{type}', array('as' => 'categories', 'uses' =>'AppliController@categories'));
 
 	Route::get('/game/{type}/{category}', array('as' => 'game', 'uses' =>'AppliController@game'));
+
+	/*
+	*
+	* Administration
+	*
+	*/
+
+	Route::group(['namespace' => 'Admin', 'middleware' => 'admin', 'prefix' => 'admin'], function (){
+		Route::get('/', array('as' => 'admin_home', 'uses' => 'AppliController@index'));
+	});
 });
