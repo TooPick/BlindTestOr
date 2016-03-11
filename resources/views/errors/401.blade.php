@@ -1,6 +1,6 @@
 @extends('layout.appli')
 
-@section('title', 'Erreur 404')
+@section('title', 'Erreur 401')
 
 @section('content')
 
