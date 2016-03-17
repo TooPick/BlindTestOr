@@ -37,7 +37,9 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::get('/game/{type}', array('as' => 'categories', 'uses' =>'AppliController@categories'));
 
-	Route::get('/game/{type}/{category}', array('as' => 'game', 'uses' =>'AppliController@game'));
+	Route::group(['middleware' => 'auth'], function (){
+		Route::get('/game/{type}/{category}', array('as' => 'game', 'uses' =>'AppliController@game'));
+	});
 
 	/*
 	*
