@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Category;
 
 use Auth;
 
@@ -21,7 +22,8 @@ class AppliController extends Controller
     {
     	if($type == "solo" || $type == "multi")
     	{
-        	return view('categories', array('type' => $type));
+            $categories = Category::get();
+        	return view('categories', array('type' => $type, 'categories' => $categories));
     	}
     	else
     	{

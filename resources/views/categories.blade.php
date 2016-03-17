@@ -8,19 +8,22 @@
 
 <div class="row">
 	
-	<div class="col-md-4">
-		<a href="{{ URL::route('game', [$type, 'rock-n-roll']) }}">
-			<!--Bar-->
-			<div class="mosaic-block bar">
-				<div class="mosaic-overlay">
-					<div class="details text-center" style="padding:25px;">
-						<h4>Rock'n'Roll</h4>
+		@foreach ($categories as $category)
+			<div class="col-md-6">
+				<a href="{{ URL::route('game', [$type, $category->slug]) }}">
+					<!--Bar-->
+					<div class="mosaic-block bar">
+						<div class="mosaic-overlay">
+							<div class="details text-center" style="padding:25px;">
+								<h4>{{ $category->name }}</h4>
+							</div>
+						</div>
+						<div class="mosaic-backdrop"><img src="http://buildinternet.s3.amazonaws.com/projects/mosaic/florian.jpg"/></div>
 					</div>
-				</div>
-				<div class="mosaic-backdrop"><img src="http://buildinternet.s3.amazonaws.com/projects/mosaic/florian.jpg"/></div>
+				</a>
 			</div>
-		</a>
-	</div>
+		@endforeach
+	
 </div>
 
 @endsection
