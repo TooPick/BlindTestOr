@@ -47,5 +47,7 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::group(['namespace' => 'Admin', 'middleware' => 'admin', 'prefix' => 'admin'], function (){
 		Route::get('/', array('as' => 'admin_home', 'uses' => 'AppliController@index'));
+
+		Route::resource('category', 'CategoryController');
 	});
 });
