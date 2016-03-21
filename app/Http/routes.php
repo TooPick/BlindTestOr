@@ -51,5 +51,6 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('/', array('as' => 'admin_home', 'uses' => 'AppliController@index'));
 
 		Route::resource('category', 'CategoryController');
+		Route::resource('song', 'SongController');
 	});
 });

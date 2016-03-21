@@ -24,11 +24,21 @@
 			    	<tr>
 			    		<td>{{ $category->name }}</td>
 			    		<td>{{ $category->slug }}</td>
-			    		<td><a class="btn btn-primary" href="">Editer</a> <a class="btn btn-danger" chref="">Supprimer</a></td>
+			    		<td><a class="btn btn-primary" href="{{ URL::route('admin.category.edit', ['category' => $category->id]) }}">Editer</a>
+			    		{{ Form::open(array('url' => route('admin.category.destroy', $category), 'style' => 'display:inline-block')) }}
+		                	{{ Form::hidden('_method', 'DELETE') }}
+		                    {{ Form::submit('Supprimer', array('class' => 'btn btn-danger')) }}
+		                {{ Form::close() }}
+			    		</td>
 			    	</tr>
 			    @endforeach
 	    	</tbody>
 	    </table>
+
+	    @if(count($categories) <= 0)
+	    	<p class="text-center"><b>Aucune catégorie...<b></p>
+	    @endif
+
     </div>
 
 @endsection
