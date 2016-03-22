@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use File;
+use Input;
 
 use App\Song;
 
@@ -19,7 +21,17 @@ class SongController extends Controller
 
     public function store(Request $request)
     {
-        Song::create($request->all());
+        $song = Song::create($request->all());
+
+        if($request->hasFile('song'))
+        {
+            $pathToFile = 'upload/song/';
+            $fileName = $song->id.'.'.$request->file('song')->getClientOriginalExtension();
+            $request->file('song')->move($pathToFile, $fileName);
+            $song->link = $pathToFile.$fileName;
+            $song->save();
+        }
+
         return redirect(route('admin.song.index'));
     }
 
@@ -36,6 +48,11 @@ class SongController extends Controller
     public function destroy($id)
     {
         $song = Song::findOrFail($id);
+        if(!empty($song->link))
+        {
+            $pathToFile = public_path($song->link);
+            File::delete($pathToFile);
+        }
         $song->delete();
         return redirect(route('admin.song.index'));
     }
@@ -44,6 +61,22 @@ class SongController extends Controller
     {
         $song = Song::findOrFail($id);
         $song->update($request->all());
+
+        if($request->hasFile('song'))
+        {
+            if(!empty($song->link))
+            {
+                $pathToFile = public_path($song->link);
+                File::delete($pathToFile);
+            }
+            
+            $pathToFile = 'upload/song/';
+            $fileName = $song->id.'.'.$request->file('song')->getClientOriginalExtension();
+            $request->file('song')->move($pathToFile, $fileName);
+            $song->link = $pathToFile.$fileName;
+            $song->save();
+        }
+
         return redirect(route('admin.song.index'));
     }
 

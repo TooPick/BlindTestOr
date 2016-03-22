@@ -16,6 +16,7 @@
     			<tr>
     				<th>Titre</th>
     				<th>Artiste</th>
+    				<th>Fichier</th>
     				<th>Actions</th>
     			</tr>
     		</thead>
@@ -24,6 +25,13 @@
 			    	<tr>
 			    		<td>{{ $song->title }}</td>
 			    		<td>{{ $song->artist }}</td>
+			    		<td>
+			    			@if(!empty($song->link))
+			    				Oui
+			    			@else
+			    				Non
+			    			@endif
+			    		</td>
 			    		<td><a class="btn btn-primary" href="{{ URL::route('admin.song.edit', ['song' => $song->id]) }}">Editer</a>
 			    		{{ Form::open(array('url' => route('admin.song.destroy', $song), 'style' => 'display:inline-block')) }}
 		                	{{ Form::hidden('_method', 'DELETE') }}

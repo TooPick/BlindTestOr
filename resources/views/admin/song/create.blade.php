@@ -9,11 +9,11 @@
     </div>
 
     <div class="row">
-    	{!! Form::open(array('route' => 'admin.song.store')) !!}
+    	{!! Form::open(array('route' => 'admin.song.store', 'files' => true)) !!}
 		    
 		    <div class="form-group">
-			    {{ Form::label('link', 'Lien de la chanson (provisoire)', ['class' => 'control-label']) }}
-			    {{ Form::text('link', null, array_merge(['class' => 'form-control'])) }}
+			    {{ Form::label('song', 'Fichier de la chanson', ['class' => 'control-label']) }}
+			    {{ Form::file('song', null, array_merge(['class' => 'form-control'])) }}
 			</div>
 
 			<div class="form-group">
