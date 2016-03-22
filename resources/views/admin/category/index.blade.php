@@ -16,6 +16,7 @@
     			<tr>
     				<th>Nom</th>
     				<th>Slug</th>
+    				<th>Image</th>
     				<th>Actions</th>
     			</tr>
     		</thead>
@@ -24,6 +25,11 @@
 			    	<tr>
 			    		<td>{{ $category->name }}</td>
 			    		<td>{{ $category->slug }}</td>
+			    		<td>
+			    			@if(!empty($category->image_url))
+			    				<img style="max-width=100px;max-height:100px;" src="{{ URL::asset($category->image_url) }}">
+			    			@endif
+			    		</td>
 			    		<td><a class="btn btn-primary" href="{{ URL::route('admin.category.edit', ['category' => $category->id]) }}">Editer</a>
 			    		{{ Form::open(array('url' => route('admin.category.destroy', $category), 'style' => 'display:inline-block')) }}
 		                	{{ Form::hidden('_method', 'DELETE') }}

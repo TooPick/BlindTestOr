@@ -9,7 +9,7 @@
     </div>
 
     <div class="row">
-    	{!! Form::open(['method' => 'put', 'url' => route('admin.category.update', $category)]) !!}
+    	{!! Form::open(['method' => 'put', 'url' => route('admin.category.update', $category), 'files' => true]) !!}
 		    
 		    <div class="form-group">
 			    {{ Form::label('name', 'Nom de la catégorie', ['class' => 'control-label']) }}
@@ -19,6 +19,18 @@
 			<div class="form-group">
 			    {{ Form::label('slug', 'Slug (optionnel)', ['class' => 'control-label']) }}
 			    {{ Form::text('slug', $category->slug, array_merge(['class' => 'form-control'])) }}
+			</div>
+
+			@if(!empty($category->image_url))
+				<div class="form-group">
+					<p>Image actuelle :</p>
+					<img style="max-width=200px;max-height:200px;" src="{{ URL::asset($category->image_url) }}">		
+				</div>
+			@endif
+
+			<div class="form-group">
+			    {{ Form::label('image', 'Image de la catégorie', ['class' => 'control-label']) }}
+			    {{ Form::file('image', null, array_merge(['class' => 'form-control'])) }}
 			</div>
 
 			<div class="form-group text-center">
