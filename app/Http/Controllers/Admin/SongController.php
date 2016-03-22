@@ -32,6 +32,8 @@ class SongController extends Controller
             $song->save();
         }
 
+        $song->categories()->sync($request->get('categories'));
+
         return redirect(route('admin.song.index'));
     }
 
@@ -61,6 +63,7 @@ class SongController extends Controller
     {
         $song = Song::findOrFail($id);
         $song->update($request->all());
+        $song->categories()->sync($request->get('categories'));
 
         if($request->hasFile('song'))
         {
@@ -83,6 +86,7 @@ class SongController extends Controller
     public function edit($id)
     {
         $song = Song::findOrFail($id);
+        //dd($song->categories->pluck('id')->toArray());
 
         return view('admin.song.edit', array('song' => $song));
     }

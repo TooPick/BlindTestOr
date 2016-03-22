@@ -16,6 +16,7 @@
     			<tr>
     				<th>Titre</th>
     				<th>Artiste</th>
+    				<th>Catégories</th>
     				<th>Fichier</th>
     				<th>Actions</th>
     			</tr>
@@ -25,6 +26,13 @@
 			    	<tr>
 			    		<td>{{ $song->title }}</td>
 			    		<td>{{ $song->artist }}</td>
+			    		<td>
+			    			<ul>
+			    				@foreach($song->categories as $category)
+			    					<li>{{ $category->name }}</li>
+			    				@endforeach
+			    			</ul>
+			    		</td>
 			    		<td>
 			    			@if(!empty($song->link))
 			    				Oui
