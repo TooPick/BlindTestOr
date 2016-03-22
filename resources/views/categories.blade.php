@@ -18,7 +18,7 @@
 								<h4>{{ $category->name }}</h4>
 							</div>
 						</div>
-						<div class="mosaic-backdrop"><img src="http://buildinternet.s3.amazonaws.com/projects/mosaic/florian.jpg"/></div>
+						<div class="mosaic-backdrop"><img style="max-width:100%;max-height:100%;" src="{{ URL::asset($category->image_url) }}"/></div>
 					</div>
 				</a>
 			</div>
