@@ -39,7 +39,10 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::group(['middleware' => 'auth'], function (){
 		Route::get('/game/{type}/{category}', array('as' => 'game', 'uses' =>'AppliController@game'));
+		Route::get('/profil', array('as' => 'profil' , 'uses' => 'AppliController@profil'));
+		Route::post('/profil', array('as' => 'profil' , 'uses' => 'AppliController@profilPost'));
 	});
+
 
 	/*
 	*

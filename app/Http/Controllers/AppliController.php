@@ -43,4 +43,16 @@ class AppliController extends Controller
     	}
     }
 
+    public function profil(){
+        $user = Auth::user();
+
+        return view('profil', array('user' => $user));
+    }
+
+    public function profilPost(){
+        $user = Auth::user();
+
+        return view('profil', array('user' => $user));
+    }
+
 }

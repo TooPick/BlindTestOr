@@ -56,7 +56,9 @@
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Connexion</a></li>
                         @else
+                            <li><a href="{{URL::route('profil')}}">Mon compte</a></li>
                             <li><a href="{{ url('/logout') }}">Déconnexion</a></li>
+
                         @endif
                     </ul>
                 </div>
