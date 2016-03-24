@@ -40,18 +40,14 @@ Route::group(['middleware' => 'web'], function () {
 	Route::group(['middleware' => 'auth'], function (){
 		Route::get('/game/{type}/{category}', array('as' => 'game', 'uses' =>'AppliController@game'));
 		Route::get('/profil', array('as' => 'profil' , 'uses' => 'AppliController@profil'));
-<<<<<<< HEAD
-		Route::post('/profil', array('as' => 'profil' , 'uses' => 'AppliController@profilPost'));
+
+		Route::post('/profil', array('as' => 'profil.post' , 'uses' => 'AppliController@profilPost'));
+		Route::post('/contact', array('as' => 'contact' , 'uses' => 'AppliController@contact'));
 
 		//Routes du jeu (ajax)
 		Route::group(['namespace' => 'Game', 'prefix' => 'game'], function () {
 			Route::post('/ajax/sendMessage', array('as' => 'ajax.sendMessage', 'uses' => 'GameController@ajaxSendMessage'));
 		});
-=======
-		Route::post('/profil', array('as' => 'profil.post' , 'uses' => 'AppliController@profilPost'));
-
-		Route::post('/contact', array('as' => 'contact' , 'uses' => 'AppliController@contact'));
->>>>>>> 0bea477796a2d8db0dca7a9df8405c63f113d88c
 	});
 
 
