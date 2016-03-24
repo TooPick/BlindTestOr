@@ -56,8 +56,12 @@
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Connexion</a></li>
                         @else
+                        	@if (Auth::user()->admin == 1)
+                        		<li><a href="{{ URL::route('admin_home') }}">Administration</a></li>
+                    		@endif
                             <li><a href="{{URL::route('profil')}}">Mon compte</a></li>
                             <li><a href="{{ url('/logout') }}">Déconnexion</a></li>
+                             
 
                         @endif
                     </ul>
@@ -69,11 +73,6 @@
             <!-- Site footer -->
             <div class="footer">
                 <p>&copy; BlindTestOr 2016</p>
-                @if(!Auth::guest())
-                    @if (Auth::user()->admin == 1)
-                        <p><a href="{{ URL::route('admin_home') }}">Administration</a></p>
-                    @endif
-                @endif
             </div>
 
         </div> <!-- /container -->
