@@ -34,7 +34,7 @@
 					{{ Form::token() }}
 					<div class="form-group">
 						<label for="Email">Email : </label>
-						<input type="email" class="form-control" id="Email" placeholder="{{ $user->email }}">
+						<input type="email" class="form-control" id="Email" value="{{ $user->email }}">
 					</div>
 					<div class="form-group">
 						<label for="Password">Mot de passe : </label>
