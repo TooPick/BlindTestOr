@@ -6,6 +6,18 @@
 
     <div class="page-header">
         <h1 style="color:#2cc990">Espace personnel</h1>
+        @if(isset($message))
+			<div class="alert alert-warning alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="	Close"><span aria-hidden="true">&times;</span></button>
+				{{ $message }}
+			</div>
+        @endif
+
+		@if(Session::get("error"))
+			<span class="help-block">
+			<strong>{{ Session::get("error") }}</strong>
+			</span>
+			@endif
     </div>
 	
 	<div class="row">
@@ -25,27 +37,35 @@
 			<p>Mot de passe : </p>
 
 				
-			<role="presentation" id="edition" data-panel="editer"><a href="#">Editer</a></li>
+			<role="presentation" id="edition" data-panel="editer"><a href="#" class="btn btn-primary">Editer</a></li>
 
 
 			</div>
 			<div id="profil-edition">
-				<form action="" method="POST">
-					{{ Form::token() }}
+				{!! Form::open(array('route' => 'profil.post', 'files' => true)) !!}
 					<div class="form-group">
 						<label for="Email">Email : </label>
-						<input type="email" class="form-control" id="Email" value="{{ $user->email }}">
+						<input type="email" class="form-control" id="Email" name="email" value="{{ $user->email }}">
 					</div>
 					<div class="form-group">
 						<label for="Password">Mot de passe : </label>
-						<input type="password" class="form-control" id="Password" placeholder="Mot de passe">
+						<input type="password" class="form-control" id="Password" name="password" placeholder="Mot de passe">
+						@if (!empty($errors['password']))
+                            <span class="help-block">
+                                <strong>{{ $errors['password'] }}</strong>
+                            </span>
+                        @endif
+					</div>
+					<div class="form-group">
+						<label for="Password">Confirmation du mot de passe : </label>
+						<input type="password" class="form-control" id="PasswordConf" name="passwordConf" placeholder="Mot de passe">
 					</div>
 					<div class="form-group">
 						<label for="InputFile">Avatar </label>
-						<input type="file" id="InputFile">
+						<input type="file" id="InputFile" name="avatar">
 					</div>
-					<button type="submit" class="btn btn-default">Enregistrer</button>
-				</form>
+					<button type="submit" class="btn btn-primary">Enregistrer</button>
+				{!! Form::close() !!}
 
 			</div>
 			<div id="stats" >
@@ -58,21 +78,21 @@
 			</div>
 			<div id="contact">
 
-				<form>
+				{!! Form::open(array('route' => 'contact', 'files' => true)) !!}
 					<div class="form-group">
 						<label for="Email">Email address</label>
-						<input type="email" class="form-control" id="Email" value="{{ $user->email }}">
+						<input type="email" class="form-control" name="email" id="Email" value="{{ $user->email }}">
 					</div>
 					<div class="form-group">
 						<label for="Object">Objet</label>
-						<input type="text" class="form-control" id="Object" placeholder="Objet">
+						<input type="text" class="form-control" name = "object" id="Object" placeholder="Objet">
 					</div>
 					<div class="form-group">
 						<label for="Message">Message</label>
-						<textarea class="form-control" rows="10" placeholder="Message"></textarea>
+						<textarea class="form-control" rows="10" name="message" placeholder="Message"></textarea>
 					</div>
-					<button type="submit" class="btn btn-default">Envoyer</button>
-				</form>
+					<button type="submit" class="btn btn-primary">Envoyer</button>
+				{!! Form::close() !!}
 				
 			</div>
 		</div>
@@ -88,8 +108,20 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("#panels > div").hide();
-			$("#profil").show();
-			$(".change-panel[data-panel='profil']").addClass("active");
+
+			var hash = window.location.hash.substring(1);
+
+			if(hash != "")
+			{
+				$('#' + hash).show();
+	  			$(".change-panel[data-panel='" + hash + "']").addClass("active");
+			}
+			else
+			{
+				$("#profil").show();
+				$(".change-panel[data-panel='profil']").addClass("active");
+			}
+			
 	  		$(".change-panel").on('click', function(e){
 	  			e.preventDefault();
 	  			$("#panels > div").hide();
