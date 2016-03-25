@@ -7,12 +7,15 @@ use Hash;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User;
-use App\Category;
 use App\Http\Requests\ContactFormRequest;
 use Auth;
 use URL;
 use Redirect;
+
+use App\User;
+use App\Category;
+use App\Game;
+use App\Score;
 
 class AppliController extends Controller
 {
@@ -38,6 +41,48 @@ class AppliController extends Controller
     {
     	if($type == "solo" || $type == "multi")
     	{
+            $cat = Category::where('slug', $category)->first();
+
+            $game = NULL;
+
+            if($type == "multi")
+                $game = Game::where('category_id', $cat->id)->first();
+
+            $nbPlayers = 0;
+
+            if($game != NULL)
+            {
+                $nbPlayers = Score::where('game_id', $game->id)->count();
+                echo($nbPlayers);
+            }
+
+            if($game == NULL || $nbPlayers >= 6)
+            {
+                echo("new");
+                $game = new Game;
+
+                if($type == "solo")
+                    $game->type = 0;
+                else
+                    $game->type = 1;
+
+                $game->response_time = 20;
+                $game->finished = 0;
+                $game->category()->associate($cat);
+            }
+            else
+                echo("existe");
+
+            //$game->save();
+
+            $score = new Score;
+            $score->user()->associate(Auth::user());
+            $score->game()->associate($game);
+            $score->score = 0;
+            
+            //$score->save();
+
+            dd($score);
         	return view('game');
     	} 
     	else
