@@ -51,10 +51,7 @@ class AppliController extends Controller
             $nbPlayers = 0;
 
             if($game != NULL)
-            {
                 $nbPlayers = Score::where('game_id', $game->id)->count();
-                echo($nbPlayers);
-            }
 
             if($game == NULL || $nbPlayers >= 6)
             {
