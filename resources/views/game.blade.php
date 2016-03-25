@@ -53,8 +53,12 @@
 @endsection
 
 @section('javascripts')
+	<script src="{{ URL::asset('js/moment.js') }}"></script>
+
 	<script type="text/javascript">
 		$(function() {
+			var last_update = 0;
+
 			$(window).bind("beforeunload", function() { 
 				return confirm("Do you really want to close?"); 
 			});
@@ -66,6 +70,7 @@
 					type : 'POST',
 					data : {
 						"_token": "{{ csrf_token() }}",
+						"game_id": {{ $game->id }},
 						"message": $('#chat-message').val()
 					},
 					success : function(result, statut){
@@ -88,6 +93,35 @@
 			setInterval(function(){
 
 				console.log("update");
+				$.ajax({
+					url : '{{ URL::route("ajax.autoUpdate") }}',
+					type : 'POST',
+					data : {
+						"_token": "{{ csrf_token() }}",
+						"game_id": {{ $game->id }},
+						"last_update": last_update
+					},
+					success : function(result, statut){
+						var result = $.parseJSON(result);
+
+						var length = result["chats"].length;
+
+						$.each(result['chats'], function(key, value) {
+				            var message = "<p><strong>" + value["user"]["username"] + "</strong> : " + value["message"] + "</p>";
+				            $('#chat').append(message);
+				        });
+
+				        last_update = result["date"];
+				        
+				        console.log(result);
+						console.log(last_update);
+					},
+
+					error : function(resultat, statut, erreur){
+
+					},
+
+				});
 			
 			}, 1000 * update);
 		});

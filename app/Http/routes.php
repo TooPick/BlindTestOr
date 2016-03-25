@@ -47,6 +47,7 @@ Route::group(['middleware' => 'web'], function () {
 		//Routes du jeu (ajax)
 		Route::group(['namespace' => 'Game', 'prefix' => 'game'], function () {
 			Route::post('/ajax/sendMessage', array('as' => 'ajax.sendMessage', 'uses' => 'GameController@ajaxSendMessage'));
+			Route::post('/ajax/autoUpdate', array('as' => 'ajax.autoUpdate', 'uses' => 'GameController@ajaxAutoUpdate'));
 		});
 	});
 

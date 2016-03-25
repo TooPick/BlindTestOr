@@ -79,8 +79,8 @@ class AppliController extends Controller
             
             //$score->save();
 
-            dd($score);
-        	return view('game');
+            //dd($score);
+        	return view('game', array('game' => $game));
     	} 
     	else
     	{
