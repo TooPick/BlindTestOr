@@ -45,17 +45,20 @@ class AppliController extends Controller
 
             $game = NULL;
 
+            //Recherche d'une partie multijoueur déjà commencée
             if($type == "multi")
                 $game = Game::where('category_id', $cat->id)->first();
 
             $nbPlayers = 0;
 
+            //Récupération du nombre de joueurs si une partie est trouvée
             if($game != NULL)
                 $nbPlayers = Score::where('game_id', $game->id)->count();
 
+            //Aucune partie trouvée ou solo ou plus de 6 joueurs
             if($game == NULL || $nbPlayers >= 6)
             {
-                echo("new");
+                //Création d'une nouvelle partie
                 $game = new Game;
 
                 if($type == "solo")
@@ -67,17 +70,20 @@ class AppliController extends Controller
                 $game->finished = 0;
                 $game->category()->associate($cat);
             }
+            //Partie trouvée et moins de 7 joueurs
             else
-                echo("existe");
+            {
 
-            //$game->save();
+            }
+
+            $game->save();
 
             $score = new Score;
             $score->user()->associate(Auth::user());
             $score->game()->associate($game);
             $score->score = 0;
             
-            //$score->save();
+            $score->save();
 
             //dd($score);
         	return view('game', array('game' => $game));

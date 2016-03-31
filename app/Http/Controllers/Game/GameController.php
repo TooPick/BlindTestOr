@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Auth;
 
 use App\Chat;
+use App\Score;
+use App\Game;
 
 class GameController extends Controller
 {
@@ -42,16 +44,36 @@ class GameController extends Controller
         $lastUpdate = $data["last_update"];
 
         $chats = Chat::where('game_id', $data['game_id'])->where('date', '>', $lastUpdate)->with('user')->orderBy('date', 'ASC')->get()->toArray();
+        $players = Score::where('game_id', $data['game_id'])->with('user')->get()->toArray();
 
         if(count($chats) > 0)
             $lastUpdate = $chats[count($chats)-1]["date"];
 
         $response = array(
             'chats' => $chats,
-            'date' => $lastUpdate
+            'date' => $lastUpdate,
+            'players' => $players,
         );
 
         return json_encode($response);
     }
 
+    public function ajaxExitGame(Request $request)
+    {
+        $data = $request->all();
+
+        $score = Score::where('game_id', $data['game_id'])->where('user_id', Auth::user()->id)->first();
+        $score->delete();
+
+        $nbPlayers = Score::where('game_id', $data['game_id'])->count();
+
+        if($nbPlayers <= 0)
+        {
+            $game = Game::where('id', $data['game_id']);
+            $chats = Chat::where('game_id', $data['game_id']);
+            $chats->delete();
+            $game->delete();
+        }
+
+    }
 }

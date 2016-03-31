@@ -22,4 +22,13 @@ class Game extends Model
     {
     	return $this->belongsTo('App\Category');
     }
+
+    protected static function boot() {
+        parent::boot();
+
+        static::deleting(function($game) { // before delete() method call this
+             $game->chats()->delete();
+             // do the rest of the cleanup...
+        });
+    }
 }

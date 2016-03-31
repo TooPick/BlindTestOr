@@ -14,7 +14,6 @@ class CreateGamesTable extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->integer('type');
             $table->integer('response_time');
             $table->boolean('finished')->default(0);
