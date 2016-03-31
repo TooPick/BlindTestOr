@@ -18,7 +18,7 @@
 
 		<div class="col-md-8">
 			<p>Règles : Répondez aux questions le plus vite possible pour gagner un maximum de points !</p>
-			<h3 class="text-center">Question : Qui chante cette chanson ?</h3>
+			<h3 class="text-center">Question : <span id="question">Qui chante cette chanson ?</span></h3>
 		</div>
 	</div>
 
@@ -26,6 +26,13 @@
 
 	<div class="row">
 		<div id="players" class="col-md-4">
+			@if($isHost)
+				<div id="host-actions">
+					<h4>Actions</h4>
+					<button class="btn btn-primary" id="start-game">Lancer la partie</button>
+				</div>
+			@endif
+
 			<h4>Joueurs</h4>
 			<ul id="players-list">
 
@@ -57,6 +64,13 @@
 	<script type="text/javascript">
 		$(function() {
 			var last_update = 0;
+			var playlist = null;
+
+			var player = document.createElement('audio');
+
+			var selected = null;
+			var startDate = 0;
+			var previewLength = 20;
 
 			//A la fermeture de la fenêtre
 			$(window).bind('beforeunload', function() {
@@ -155,6 +169,35 @@
 				});
 			
 			}, 1000 * update);
+
+			$('#start-game').on('click', function(e) {
+				e.preventDefault();
+				alert("Début de la partie");
+
+				//Récupération de la playlist
+				$.ajax({
+					url : '{{ URL::route("ajax.getPlaylist") }}',
+					type : 'POST',
+					async : false,
+					data : {
+						"_token": "{{ csrf_token() }}",
+						"game_id": {{ $game->id }}
+					},
+					success : function(result, statut){
+						var result = $.parseJSON(result);
+						playlist = result;
+					}
+				});
+
+				//Choix random de la chanson
+				selected = playlist[Math.floor(Math.random()*Object.keys(playlist).length)];
+
+				//Chargement de la chanson
+				player.setAttribute('src', "{{ url('/') }}/" + selected.link);
+				$.get();
+
+				startDate = 0;
+			});
 		});
 	</script>
 @endsection

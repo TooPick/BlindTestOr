@@ -8,10 +8,12 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Auth;
+use DB;
 
 use App\Chat;
 use App\Score;
 use App\Game;
+use App\Song;
 
 class GameController extends Controller
 {
@@ -75,5 +77,19 @@ class GameController extends Controller
             $game->delete();
         }
 
+    }
+
+    public function ajaxGetPlaylist(Request $request)
+    {
+        $data = $request->all();
+
+        $game = Game::where('id', $data['game_id'])->first();
+
+        $songs = DB::table('songs')
+            ->join('category_song', 'songs.id', '=', 'category_song.song_id')
+            ->where('category_song.category_id', '=', $game->category_id)
+            ->get();
+
+        return json_encode($songs);
     }
 }

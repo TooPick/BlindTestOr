@@ -85,8 +85,14 @@ class AppliController extends Controller
             
             $score->save();
 
+            $host = Score::where('game_id', $game->id)->with('user')->orderBy('id', 'ASC')->get()->first();
+
+            $isHost = false;
+            if ($host->user->id == Auth::user()->id)
+                $isHost = true;
+
             //dd($score);
-        	return view('game', array('game' => $game));
+        	return view('game', array('game' => $game, 'isHost' => $isHost));
     	} 
     	else
     	{
