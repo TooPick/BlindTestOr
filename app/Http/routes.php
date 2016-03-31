@@ -65,5 +65,6 @@ Route::group(['middleware' => 'web'], function () {
 
 		Route::resource('category', 'CategoryController');
 		Route::resource('song', 'SongController');
+		Route::resource('user', 'UserController');
 	});
 });

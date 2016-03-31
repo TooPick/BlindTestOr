@@ -10,5 +10,6 @@
     <div class="row">
     	<a class="btn btn-primary" href="{{ URL::route('admin.category.index') }}">Gestion des catégories</a>
     	<a class="btn btn-primary" href="{{ URL::route('admin.song.index') }}">Gestion des chansons</a>
+    	<a class="btn btn-primary" href="{{ URL::route('admin.user.index') }}">Gestion des utilisateurs</a>
     </div>
 @endsection
