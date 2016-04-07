@@ -123,6 +123,7 @@
 						},
 						success : function(result, statut){
 							var result = $.parseJSON(result);
+							console.log(result);
 
 						   $('#chat-message').val('');
 						}
