@@ -6212,3 +6212,11 @@ legend {
 .thumbnail .caption .caption-label {
   color: #2cc990;
 }
+#chat{
+  height: 300px;
+  overflow-y: scroll;
+  padding: 15px;
+  border-style: solid;
+  border-width: 1px;
+  margin-top: 25px;
+}

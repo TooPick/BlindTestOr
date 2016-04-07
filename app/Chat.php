@@ -15,6 +15,6 @@ class Chat extends Model
 
     public function game()
     {
-    	return $this->belongsTo('App\User');
+    	return $this->belongsTo('App\Game');
     }
 }

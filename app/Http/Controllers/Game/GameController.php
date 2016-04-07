@@ -14,6 +14,7 @@ use App\Chat;
 use App\Score;
 use App\Game;
 use App\Song;
+use App\Action;
 
 class GameController extends Controller
 {
@@ -47,12 +48,17 @@ class GameController extends Controller
 
         $chats = Chat::where('game_id', $data['game_id'])->where('date', '>', $lastUpdate)->with('user')->orderBy('date', 'ASC')->get()->toArray();
         $players = Score::where('game_id', $data['game_id'])->with('user')->get()->toArray();
+        $actions = Action::where('game_id', $data['game_id'])->where('date', '>', $lastUpdate)->orderBy('date', 'ASC')->get()->toArray();
 
         if(count($chats) > 0)
             $lastUpdate = $chats[count($chats)-1]["date"];
 
+        if((count($actions) > 0) && ($actions[count($actions)-1]["date"] > $lastUpdate))
+            $lastUpdate = $actions[count($actions)-1]["date"];
+
         $response = array(
             'chats' => $chats,
+            'actions' => $actions,
             'date' => $lastUpdate,
             'players' => $players,
         );
@@ -91,5 +97,34 @@ class GameController extends Controller
             ->get();
 
         return json_encode($songs);
+    }
+
+    public function ajaxAddAction(Request $request)
+    {
+        $data = $request->all();
+
+        $game_id = $data['game_id'];
+        $actionName = $data['action'];
+        $actionParameter = $data['parameter'];
+
+        $action = new Action;
+        $action->game_id = $game_id;
+        $action->action = $actionName;
+        $action->parameter = $actionParameter;
+        $action->date = date('Y-m-d H:i:s');
+        $action->save();
+
+        return json_encode(true);
+    }
+
+    public function ajaxSetSong(Request $request)
+    {
+        $data = $request->all();
+
+        $game = Game::where('id', $data['game_id'])->first();
+        $game->song_id = $data['song_id'];
+        $game->save();
+
+        return json_encode(true);
     }
 }

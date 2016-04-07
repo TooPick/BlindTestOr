@@ -66,9 +66,10 @@ class AppliController extends Controller
                 else
                     $game->type = 1;
 
-                $game->response_time = 20;
+                $game->response_time = 15;
                 $game->finished = 0;
                 $game->category()->associate($cat);
+                $game->round_scores = json_encode(array());
             }
             //Partie trouvée et moins de 7 joueurs
             else

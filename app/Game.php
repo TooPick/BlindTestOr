@@ -23,6 +23,16 @@ class Game extends Model
     	return $this->belongsTo('App\Category');
     }
 
+    public function song()
+    {
+        return $this->belongsTo('App\Song');
+    }
+
+    public function actions()
+    {
+        return $this->hasMany('App\Action');
+    }
+
     protected static function boot() {
         parent::boot();
 

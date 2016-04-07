@@ -13,7 +13,7 @@
 	<div class="row">
 		<div id="timers" class="col-md-4">
 			<p>Prochain round dans : <span id="timer-next-round">00:20</span> minutes.</p>
-			<p>Temps de l'écoute : <span id="preview-time">20</span> secondes.</p>
+			<p>Temps de l'écoute : <span id="preview-time">{{ $game->response_time }}</span> secondes.</p>
 		</div>
 
 		<div class="col-md-8">
@@ -42,7 +42,7 @@
 		<div class="col-md-8">
 			<h4>Chat</h4>
 
-			<div id="chat" style="height:300px;background:lightgrey;overflow-y:scroll;"></div>
+			<div id="chat"></div>
 			<br>
 			<form class="form-horizontal">
 				<div class="form-group">
@@ -70,7 +70,7 @@
 
 			var selected = null;
 			var startDate = 0;
-			var previewLength = 20;
+			var previewLength = {{ $game->response_time }};
 
 			//A la fermeture de la fenêtre
 			$(window).bind('beforeunload', function() {
@@ -88,6 +88,23 @@
 					}
 				});
 			});
+
+			function addAction(action, parameter){
+				$.ajax({
+					url : '{{ URL::route("ajax.addAction") }}',
+					type : 'POST',
+					async : false,
+					data : {
+						"_token": "{{ csrf_token() }}",
+						"game_id": {{ $game->id }},
+						"action": action,
+						"parameter": parameter,
+					},
+					success : function(result, statut){
+						console.log(result);
+					}
+				});
+			}
 
 			$('#send-message').on('click', function (e) {
 				e.preventDefault();
@@ -141,6 +158,18 @@
 	            $('#chat').scrollTop($('#chat').height());
 			}
 
+			function makeAction(action, parameter)
+			{
+				console.log(parameter);
+				switch(action) {
+					case 'startMusic':
+						var music = $.parseJSON(parameter);
+						console.log(music);
+						startMusic(player, music);
+						break;
+				}
+			}
+
 			//Mise à jour automatique
 			var update = 1; //Temps en secondes
 			setInterval(function(){
@@ -154,12 +183,17 @@
 					},
 					success : function(result, statut){
 						var result = $.parseJSON(result);
+						console.log(result);
 
 						var length = result["chats"].length;
 
 						$.each(result['chats'], function(key, value) {
 				            addMessage(value['user']['username'], value['message']);
 				        });
+
+						$.each(result['actions'], function(key, value) {
+							makeAction(value['action'], value['parameter']);
+						});
 				        
 				        updatePlayersList(result['players']);
 
@@ -170,9 +204,86 @@
 			
 			}, 1000 * update);
 
+			function startMusic(player, music){
+				//Chargement de la chanson
+				player.setAttribute('src', "{{ url('/') }}/" + music.link);
+				$.get();
+
+				startDate = music.startDate;
+
+				player.onloadedmetadata = function()
+				{
+					//Déplacement du début de l'écoute
+					player.currentTime = startDate;
+
+					player.play();
+				}
+
+				function formatTime(time)
+				{
+					var minutes = Math.round(time/60);
+					var sec = Math.round(time%60);
+					var result = minutes + ":" + sec;
+					return result;
+				}
+
+				function endPreview()
+				{
+					var time = Math.round(player.currentTime) - startDate;
+					if(time >= previewLength || time > player.duration)
+					{
+						player.pause();
+						alert("Fin de l'écoute");
+					}
+				}
+
+				player.onplay = function() {
+					$("#duration").html(formatTime(player.duration));
+				};
+
+				player.ontimeupdate = function() {
+					//Mise à jour de l'affichage
+					$("#time").html(formatTime(player.currentTime));
+					
+					//Détecte si le temps d'écoute est écoulé
+					endPreview();
+				};
+			}
+
+			function generateRandomStart(player, music)
+			{
+				//Chargement de la chanson
+				player.setAttribute('src', "{{ url('/') }}/" + music.link);
+				$.get();
+
+				player.onloadedmetadata = function()
+				{
+					//Sélection de la portion de chanson aléatoire 
+					var middle = Math.round(player.duration / 2);
+
+					//Minimum du random
+					var begin = middle - 60;
+					if(begin < 0)
+						begin = 0;
+
+					//Maximum du random
+					var end = middle + 60;
+					if(end > player.duration)
+						end = player.duration;
+
+					//Random
+					var random = Math.floor(Math.random()*(end-begin+1)+begin);
+					//Cas du random trop proche de la fin
+					if((player.duration - random) < previewLength)
+						random = Math.floor(player.duration - previewLength);
+
+					music.startDate = random;
+					addAction('startMusic', JSON.stringify(music));
+				}
+			}
+
 			$('#start-game').on('click', function(e) {
 				e.preventDefault();
-				alert("Début de la partie");
 
 				//Récupération de la playlist
 				$.ajax({
@@ -192,11 +303,26 @@
 				//Choix random de la chanson
 				selected = playlist[Math.floor(Math.random()*Object.keys(playlist).length)];
 
-				//Chargement de la chanson
-				player.setAttribute('src', "{{ url('/') }}/" + selected.link);
-				$.get();
+				//Enregistrement de la musique random
+				$.ajax({
+					url : '{{ URL::route("ajax.setSong") }}',
+					type : 'POST',
+					async : false,
+					data : {
+						"_token": "{{ csrf_token() }}",
+						"game_id": {{ $game->id }},
+						"song_id": selected.id,
+					},
+					success : function(result, statut){
+						var result = $.parseJSON(result);
+						console.log(result);
 
-				startDate = 0;
+						if(result)
+							generateRandomStart(player, selected);
+					}
+				});
+
+				generateRandomStart(player, selected);
 			});
 		});
 	</script>
