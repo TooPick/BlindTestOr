@@ -17,15 +17,41 @@ use App\Song;
 
 class GameController extends Controller
 {
+    function compareTo($answer , $submission) {
+        $article = ["le", "la", "les", "the"];
+
+        if (substr_compare($answer, $submission, 0, strlen($answer), true) != 0) {
+            $one = explode(" ", $answer, 2);
+            
+            if(in_array(strtolower($one[0]), $article)) {
+                $result = substr_compare($one[1],$submission, 0, strlen($one[1]),true);
+                if($result == 0)
+                    return true;
+                else 
+                    return false;
+            }
+            else
+                return false;
+        }
+        else 
+            return true;
+    }
+
     public function ajaxSendMessage(Request $request)
     {
         $data = $request->all();
+        $response = "Les Fatals Picards";
+        $user = Auth::user();
 
         $chat = new Chat;
-        $chat->message = $data["message"];
         $chat->user()->associate(Auth::user());
         $chat->game()->associate($data["game_id"]);
         $chat->date = date('Y-m-d H:i:s');
+
+        if($this->compareTo($response, $data["message"])) 
+            $chat->message = "Bonne réponse";
+        else 
+            $chat->message = $data["message"];
 
         $chat->save();
 
