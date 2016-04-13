@@ -92,7 +92,6 @@ class AppliController extends Controller
             if ($host->user->id == Auth::user()->id)
                 $isHost = true;
 
-            //dd($score);
         	return view('game', array('game' => $game, 'isHost' => $isHost));
     	} 
     	else

@@ -41,28 +41,78 @@ class GameController extends Controller
     public function ajaxSendMessage(Request $request)
     {
         $data = $request->all();
-        $response = "Les Fatals Picards";
         $user = Auth::user();
 
+        $game = Game::where('id', $data['game_id'])->first();
+
+        $song = NULL;
+
+        if($game->song_id != NULL)
+            $song = Song::find($game->song_id);
+
+        $response = NULL;
+        if($song != NULL)
+        {
+            $response = $song->artist;
+        }
+
         $chat = new Chat;
-        $chat->user()->associate(Auth::user());
+        $chat->user()->associate($user);
         $chat->game()->associate($data["game_id"]);
         $chat->date = date('Y-m-d H:i:s');
 
-        if($this->compareTo($response, $data["message"])) 
-            $chat->message = "Bonne réponse";
+        $round_scores = json_decode($game->round_scores);
+
+        if($game->analyseResponse)
+        {
+            foreach($round_scores as $winner)
+            {
+                if($winner->user == $user->id)
+                    return json_encode($winner);
+            }
+        }
+
+        if($game->analyseResponse && $this->compareTo($response, $data["message"])) 
+        {
+            $nbWinners = count($round_scores);
+
+            //Gestion du nombre de point en fonction du rang de l'utilisateur
+
+            //4eme et plus
+            $score = 1;
+
+            switch ($nbWinners) {
+                //Premier
+                case 0:
+                    $score = 4;
+                    break;
+                //Deuxième
+                case 1:
+                    $score = 3;
+                    break;
+                //Troisième
+                case 2:
+                    $score = 2;
+                    break;
+            }
+
+            $winner = array(
+                "user" => $user->id,
+                "score" => $score,
+            );
+
+            $round_scores[] = $winner;
+            $game->round_scores = json_encode($round_scores);
+            $game->save();
+
+            $chat->message = "Bonne réponse vous gagnez : <span style='color:green'>".$score."</span> point(s).";
+        }
         else 
             $chat->message = $data["message"];
 
         $chat->save();
 
-
-        /*//$request = Request::ajax();
-        $response = array(
-            'message' => "lol"
-        );
-        //var_dump($response);*/
-        return json_encode($chat);
+        return json_encode($data["message"]);
 
     }
 
@@ -96,7 +146,7 @@ class GameController extends Controller
     {
         $data = $request->all();
 
-        $score = Score::where('game_id', $data['game_id'])->where('user_id', Auth::user()->id)->first();
+        $score = Score::where('game_id', $data['game_id'])->where('user_id', $data['user_id'])->first();
         $score->delete();
 
         $nbPlayers = Score::where('game_id', $data['game_id'])->count();
@@ -106,9 +156,10 @@ class GameController extends Controller
             $game = Game::where('id', $data['game_id']);
             $chats = Chat::where('game_id', $data['game_id']);
             $chats->delete();
+            $actions = Action::where('game_id', $data['game_id']);
+            $actions->delete();
             $game->delete();
         }
-
     }
 
     public function ajaxGetPlaylist(Request $request)
@@ -149,8 +200,40 @@ class GameController extends Controller
 
         $game = Game::where('id', $data['game_id'])->first();
         $game->song_id = $data['song_id'];
+        $game->analyseResponse = true;
         $game->save();
 
         return json_encode(true);
+    }
+
+    public function ajaxEndRound(Request $request)
+    {
+        $data = $request->all();
+
+        $game = Game::where('id', $data['game_id'])->first();
+
+        //Sauvegarde des scores
+        $round_scores = json_decode($game->round_scores);
+        foreach ($round_scores as $winner) 
+        {
+            $score = Score::where('game_id', $data['game_id'])->where('user_id', $winner->user)->first();
+            $score->score = $score->score + $winner->score;
+            $score->save();
+        }
+
+        //Remise des scores à zéro
+        $game->round_scores = json_encode(array());
+
+        $game->analyseResponse = false;
+        $game->save();
+
+        $song = Song::where('id', $game->song_id)->first();
+        $answer = $song->artist;
+
+        $result = array(
+            "answer" => $answer,
+        );
+
+        return json_encode($result);
     }
 }

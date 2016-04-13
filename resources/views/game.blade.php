@@ -63,7 +63,10 @@
 
 	<script type="text/javascript">
 		$(function() {
-			var last_update = 0;
+        	//var last_update = moment().format("YYYY-MM-DD HH:mm:ss");
+        	var last_update = null;
+
+			console.log(last_update);
 			var playlist = null;
 
 			var player = document.createElement('audio');
@@ -71,6 +74,7 @@
 			var selected = null;
 			var startDate = 0;
 			var previewLength = {{ $game->response_time }};
+			var end = false;
 
 			//A la fermeture de la fenêtre
 			$(window).bind('beforeunload', function() {
@@ -84,7 +88,8 @@
 					async : false,
 					data : {
 						"_token": "{{ csrf_token() }}",
-						"game_id": {{ $game->id }}
+						"game_id": {{ $game->id }},
+						"user_id": {{ Auth::user()->id }},
 					}
 				});
 			});
@@ -156,17 +161,26 @@
 			{
 				var html = "<p><strong>" + user + "</strong> : " + message + "</p>";
 	            $('#chat').append(html);
-	            $('#chat').scrollTop($('#chat').height());
+	            $('#chat').scrollTop($('#chat').prop("scrollHeight"));
+			}
+
+			function addServerMessage(message)
+			{
+				var html = "<strong>" + message + "</strong>";
+	            $('#chat').append(html);
+	            $('#chat').scrollTop($('#chat').prop("scrollHeight"));
 			}
 
 			function makeAction(action, parameter)
 			{
-				console.log(parameter);
 				switch(action) {
 					case 'startMusic':
+						end = false;
 						var music = $.parseJSON(parameter);
-						console.log(music);
 						startMusic(player, music);
+						break;
+					case 'correctAnswer':
+						addServerMessage("La réponse correcte était : <em style='color:green'>" + parameter + "</em>.");
 						break;
 				}
 			}
@@ -208,7 +222,6 @@
 			function startMusic(player, music){
 				//Chargement de la chanson
 				player.setAttribute('src', "{{ url('/') }}/" + music.link);
-				$.get();
 
 				startDate = music.startDate;
 
@@ -230,11 +243,29 @@
 
 				function endPreview()
 				{
-					var time = Math.round(player.currentTime) - startDate;
-					if(time >= previewLength || time > player.duration)
+					if(end == false)
 					{
-						player.pause();
-						alert("Fin de l'écoute");
+						var time = Math.round(player.currentTime) - startDate;
+						if(time >= previewLength || time > player.duration)
+						{
+							end = true;
+							player.pause();
+
+							//End round
+							$.ajax({
+								url : '{{ URL::route("ajax.endRound") }}',
+								type : 'POST',
+								async : false,
+								data : {
+									"_token": "{{ csrf_token() }}",
+									"game_id": {{ $game->id }},
+								},
+								success : function(result, statut){
+									var result = $.parseJSON(result);
+									addAction('correctAnswer', result['answer']);
+								}
+							});
+						}
 					}
 				}
 
@@ -255,7 +286,6 @@
 			{
 				//Chargement de la chanson
 				player.setAttribute('src', "{{ url('/') }}/" + music.link);
-				$.get();
 
 				player.onloadedmetadata = function()
 				{
@@ -285,6 +315,8 @@
 
 			$('#start-game').on('click', function(e) {
 				e.preventDefault();
+
+				//$('#start-game').remove();
 
 				//Récupération de la playlist
 				$.ajax({
@@ -322,8 +354,6 @@
 							generateRandomStart(player, selected);
 					}
 				});
-
-				generateRandomStart(player, selected);
 			});
 		});
 	</script>
