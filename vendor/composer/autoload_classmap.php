@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddAttributesToGameTable' => $baseDir . '/database/migrations/2016_04_07_150601_addAttributesToGameTable.php',
+    'AddQuestionTypeAndIsStartedToGame' => $baseDir . '/database/migrations/2016_04_25_145940_add_question_type_and_isStarted_to_game.php',
     'AddRoundScoresToGameTable' => $baseDir . '/database/migrations/2016_04_07_153406_addRoundScoresToGameTable.php',
     'CreateActionsTable' => $baseDir . '/database/migrations/2016_04_07_131451_create_actions_table.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2016_03_10_151642_create_categories_table.php',

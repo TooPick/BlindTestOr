@@ -71,6 +71,7 @@ class AppliController extends Controller
                 $game->finished = 0;
                 $game->category()->associate($cat);
                 $game->round_scores = json_encode(array());
+                $game->is_started = 0;
             }
             //Partie trouvée et moins de 7 joueurs
             else
