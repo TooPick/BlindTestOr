@@ -53,7 +53,14 @@ class GameController extends Controller
         $response = NULL;
         if($song != NULL)
         {
-            $response = $song->artist;
+            switch ($game->question_type) {
+                case 0:
+                    $response = $song->artist;
+                    break;
+                case 1:
+                    $response = $song->title;
+                    break;
+            }
         }
 
         $chat = new Chat;
@@ -201,9 +208,19 @@ class GameController extends Controller
         $game = Game::where('id', $data['game_id'])->first();
         $game->song_id = $data['song_id'];
         $game->analyseResponse = true;
+
+        $question = random_int(0, 1);
+
+        $game->question_type = $question;
+
         $game->save();
 
-        return json_encode(true);
+        $result = array(
+            'result' => true,
+            'question_type' => $game->question_type
+        );
+
+        return json_encode($result);
     }
 
     public function ajaxEndRound(Request $request)

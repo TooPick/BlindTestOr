@@ -171,6 +171,20 @@
 	            $('#chat').scrollTop($('#chat').prop("scrollHeight"));
 			}
 
+			function setQuestionType(type)
+			{
+				console.log("***********Type Question " + type);
+				switch(type)
+				{
+					case "0":
+						$('#question').html("Qui chante cette chanson ?");
+						break;
+					case "1":
+						$('#question').html("Quel est le titre de cette chanson ?");
+						break;
+				}
+			}
+
 			function makeAction(action, parameter)
 			{
 				switch(action) {
@@ -181,6 +195,9 @@
 						break;
 					case 'correctAnswer':
 						addServerMessage("La réponse correcte était : <em style='color:green'>" + parameter + "</em>.");
+						break;
+					case 'setQuestionType':
+						setQuestionType(parameter);
 						break;
 				}
 			}
@@ -350,8 +367,11 @@
 						var result = $.parseJSON(result);
 						console.log(result);
 
-						if(result)
+						if(result["result"])
+						{
+							addAction('setQuestionType', result["question_type"]);
 							generateRandomStart(player, selected);
+						}
 					}
 				});
 			});
