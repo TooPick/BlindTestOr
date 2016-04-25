@@ -1,19 +1,13 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=latex 2015.2.4)  10 MAR 2016 15:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.4.25)  25 APR 2016 17:48
 entering extended mode
-**TEST.tex
-(C:\Users\Maëva\Documents\Stage\TEST.tex
-LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, arabic, armenian, assamese, basque, bengali
-, bokmal, bulgarian, catalan, coptic, croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, galic
-ian, german, german-x-2013-05-26, greek, gujarati, hindi, hungarian, icelandic, indonesian, interlingua, irish, italian,
- kannada, kurmanji, latin, latvian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, ngerman
--x-2013-05-26, nynorsk, oriya, panjabi, pinyin, polish, portuguese, romanian, russian, sanskrit, serbian, slovak, sloven
-ian, spanish, swedish, swissgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usenglishmax, w
-elsh, loaded.
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\base\report.cls
-Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\base\size10.clo
-File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+**./TEST.tex
+(TEST.tex
+LaTeX2e <2015/10/01> patch level 2
+Babel <3.9n> and hyphenation patterns for 69 languages loaded.
+("E:\Program Files\MiKTeX 2.9\tex\latex\base\report.cls"
+Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
+("E:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo"
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@chapter=\count80
@@ -27,163 +21,172 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
-)
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\base\inputenc.sty
-Package: inputenc 2008/03/30 v1.1d Input encoding file
+) ("E:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty"
+Package: inputenc 2015/03/17 v1.2c Input encoding file
 \inpenc@prehook=\toks14
 \inpenc@posthook=\toks15
 
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\base\latin1.def
-File: latin1.def 2008/03/30 v1.1d Input encoding file
-))
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\base\fontenc.sty
+("E:\Program Files\MiKTeX 2.9\tex\latex\base\latin1.def"
+File: latin1.def 2015/03/17 v1.2c Input encoding file
+)) ("E:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\base\t1enc.def
+("E:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
-LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
-))
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\generic\babel\babel.sty
-Package: babel 2008/07/08 v3.8m The Babel package
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+)) ("E:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.sty"
+Package: babel 2016/01/08 3.9n The Babel package
 
 *************************************
 * Local config file bblopts.cfg used
 *
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\00miktex\bblopts.cfg
+("E:\Program Files\MiKTeX 2.9\tex\latex\00miktex\bblopts.cfg"
 File: bblopts.cfg 2006/07/31 v1.0 MiKTeX 'babel' configuration
 )
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\generic\babel\frenchb.ldf
-Language: frenchb 2009/03/16 v2.3d French support from the babel system
+("E:\Program Files\MiKTeX 2.9\tex\latex\babel-french\frenchb.ldf"
+Language: frenchb 2016/01/01 v3.1k French support from the babel system
 
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\generic\babel\babel.def
-File: babel.def 2008/07/08 v3.8m Babel common definitions
+("E:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.def"
+File: babel.def 2016/01/08 3.9n Babel common definitions
 \babel@savecnt=\count88
 \U@D=\dimen103
 )
-Package babel Info: Making : an active character on input line 120.
-Package babel Info: Making ; an active character on input line 121.
-Package babel Info: Making ! an active character on input line 122.
-Package babel Info: Making ? an active character on input line 123.
+\l@acadian = a dialect from \language\l@french 
+\l@canadien = a dialect from \language\l@french 
+\FBcolonskip=\skip43
+\FBthinskip=\skip44
+\FB@interchartokenstateORI=\count89
+Package babel Info: Making : an active character on input line 372.
+Package babel Info: Making ; an active character on input line 373.
+Package babel Info: Making ! an active character on input line 374.
+Package babel Info: Making ? an active character on input line 375.
+\FBguillskip=\skip45
+\FBguill@level=\count90
+\FB@everypar=\toks16
 \FB@Mht=\dimen104
-\std@mcc=\count89
-\dec@mcc=\count90
+\std@mcc=\count91
+\dec@mcc=\count92
+\listindentFB=\skip46
+\labelwidthFB=\skip47
+\leftmarginFB=\skip48
 \parindentFFN=\dimen105
-
-*************************************
-* Local config file frenchb.cfg used
-*
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\generic\babel\frenchb.cfg)))
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\carlisle\scalefnt.sty)
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\graphics\keyval.sty
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks16
+))
+("E:\Program Files\MiKTeX 2.9\tex\latex\carlisle\scalefnt.sty")
+("E:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
 )
-(C:\Users\Maëva\AppData\Roaming\MiKTeX\2.9\tex\latex\titlesec\titlesec.sty
-Package: titlesec 2011/12/15 v2.10.0 Sectioning titles
+(C:\Users\Maeva\AppData\Roaming\MiKTeX\2.9\tex\latex\titlesec\titlesec.sty
+Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
 \ttl@box=\box26
-\beforetitleunit=\skip43
-\aftertitleunit=\skip44
+\beforetitleunit=\skip49
+\aftertitleunit=\skip50
 \ttl@plus=\dimen106
 \ttl@minus=\dimen107
-\ttl@toksa=\toks17
+\ttl@toksa=\toks18
 \titlewidth=\dimen108
 \titlewidthlast=\dimen109
 \titlewidthfirst=\dimen110
 )
-(C:\Users\Maëva\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty
-\fancy@headwidth=\skip45
-\f@ncyO@elh=\skip46
-\f@ncyO@erh=\skip47
-\f@ncyO@olh=\skip48
-\f@ncyO@orh=\skip49
-\f@ncyO@elf=\skip50
-\f@ncyO@erf=\skip51
-\f@ncyO@olf=\skip52
-\f@ncyO@orf=\skip53
+(C:\Users\Maeva\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty
+\fancy@headwidth=\skip51
+\f@ncyO@elh=\skip52
+\f@ncyO@erh=\skip53
+\f@ncyO@olh=\skip54
+\f@ncyO@orh=\skip55
+\f@ncyO@elf=\skip56
+\f@ncyO@erf=\skip57
+\f@ncyO@olf=\skip58
+\f@ncyO@orf=\skip59
 )
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\graphics\graphicx.sty
-Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+("E:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\graphics\graphics.sty
-Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
-
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\graphics\trig.sty
+("E:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
+ ("E:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
-)
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\00miktex\graphics.cfg
+) ("E:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
 File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
-Package graphics Info: Driver file: dvips.def on input line 91.
+Package graphics Info: Driver file: pdftex.def on input line 94.
 
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\graphics\dvips.def
-File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+("E:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+("E:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+("E:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count93
 ))
 \Gin@req@height=\dimen111
 \Gin@req@width=\dimen112
 )
-(C:\Users\Maëva\AppData\Roaming\MiKTeX\2.9\tex\latex\wrapfig\wrapfig.sty
+(C:\Users\Maeva\AppData\Roaming\MiKTeX\2.9\tex\latex\wrapfig\wrapfig.sty
 \wrapoverhang=\dimen113
 \WF@size=\dimen114
-\c@WF@wrappedlines=\count91
+\c@WF@wrappedlines=\count94
 \WF@box=\box27
-\WF@everypar=\toks18
+\WF@everypar=\toks19
 Package: wrapfig 2003/01/31  v 3.6
 )
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\tools\tabularx.sty
-Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
-
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\tools\array.sty
-Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+("E:\Program Files\MiKTeX 2.9\tex\latex\tools\tabularx.sty"
+Package: tabularx 2014/10/28 v2.10 `tabularx' package (DPC)
+ ("E:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty"
+Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen115
 \extrarowheight=\dimen116
-\NC@list=\toks19
-\extratabsurround=\skip54
-\backup@length=\skip55
+\NC@list=\toks20
+\extratabsurround=\skip60
+\backup@length=\skip61
 )
 \TX@col@width=\dimen117
 \TX@old@table=\dimen118
 \TX@old@col=\dimen119
 \TX@target=\dimen120
 \TX@delta=\dimen121
-\TX@cols=\count92
-\TX@ftn=\toks20
+\TX@cols=\count95
+\TX@ftn=\toks21
 )
-(C:\Users\Maëva\AppData\Roaming\MiKTeX\2.9\tex\latex\datenumber\datenumber.sty
+(C:\Users\Maeva\AppData\Roaming\MiKTeX\2.9\tex\latex\datenumber\datenumber.sty
 Package: datenumber 2001/08/06v0.02
 
-(C:\Users\Maëva\AppData\Roaming\MiKTeX\2.9\tex\latex\datenumber\datenumberUSenglish.ldf
+(C:\Users\Maeva\AppData\Roaming\MiKTeX\2.9\tex\latex\datenumber\datenumberUSenglish.ldf
 File: datenumberUSenglish.ldf 
 )
-\c@@dayscnt=\count93
-\c@@startyear=\count94
-\c@datenumber=\count95
-\c@dateyear=\count96
-\c@datemonth=\count97
-\c@dateday=\count98
-\c@datedayname=\count99
-\@nom=\count100
-\@den=\count101
+\c@@dayscnt=\count96
+\c@@startyear=\count97
+\c@datenumber=\count98
+\c@dateyear=\count99
+\c@datemonth=\count100
+\c@dateday=\count101
+\c@datedayname=\count102
+\@nom=\count103
+\@den=\count104
 )
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\multirow\multirow.sty
+("E:\Program Files\MiKTeX 2.9\tex\latex\multirow\multirow.sty"
 \bigstrutjot=\dimen122
 )
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\geometry\geometry.sty
+("E:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\generic\oberdiek\ifpdf.sty
+("E:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is not detected.
+Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\generic\oberdiek\ifvtex.sty
+("E:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty"
 Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\generic\ifxetex\ifxetex.sty
+("E:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count102
-\Gm@cntv=\count103
-\c@Gm@tempcnt=\count104
+\Gm@cnth=\count105
+\Gm@cntv=\count106
+\c@Gm@tempcnt=\count107
 \Gm@bindingoffset=\dimen123
 \Gm@wd@mp=\dimen124
 \Gm@odd@mp=\dimen125
@@ -192,9 +195,11 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layoutheight=\dimen128
 \Gm@layouthoffset=\dimen129
 \Gm@layoutvoffset=\dimen130
-\Gm@dimlist=\toks21
+\Gm@dimlist=\toks22
 
-(C:\Users\MaÃ«va\Documents\LaTeX\MikTeX\tex\latex\geometry\geometry.cfg)) (C:\Users\Maëva\Documents\Stage\TEST.aux)
+("E:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg")) (TEST.aux)
+\openout1 = `TEST.aux'.
+
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
 LaTeX Font Info:    ... okay on input line 20.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
@@ -211,10 +216,24 @@ LaTeX Info: Redefining \degres on input line 20.
 LaTeX Info: Redefining \dots on input line 20.
 LaTeX Info: Redefining \up on input line 20.
 
+(C:\Users\Maeva\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count108
+\scratchdimen=\dimen131
+\scratchbox=\box28
+\nofMPsegments=\count109
+\nofMParguments=\count110
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count111
+\MPscratchDim=\dimen132
+\MPnumerator=\count112
+\makeMPintoPDFobject=\count113
+\everyMPtoPDFconversion=\toks24
+)
 *geometry* driver: auto-detecting
-*geometry* detected driver: dvips
+*geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
-* driver: dvips
+* driver: pdftex
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -247,26 +266,24 @@ LaTeX Info: Redefining \up on input line 20.
 
 [1
 
-] [2
+{C:/Users/Maeva/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2
 
-]
-! Undefined control sequence.
-l.42 	\paragprah
-                {} Afin d'�viter de multiple redondance inutile, prenons le ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-[3] [4] (C:\Users\Maëva\Documents\Stage\TEST.aux) ) 
+] [3] [4] (TEST.aux) ) 
 Here is how much of TeX's memory you used:
- 2611 strings out of 493922
- 34857 string characters out of 3142892
- 102679 words of memory out of 3000000
- 5885 multiletter control sequences out of 15000+200000
+ 3597 strings out of 493634
+ 48135 string characters out of 3143744
+ 122921 words of memory out of 3000000
+ 6954 multiletter control sequences out of 15000+200000
  10586 words of font info for 23 fonts, out of 3000000 for 9000
- 841 hyphenation exceptions out of 8191
- 25i,4n,43p,795b,135s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 1025 hyphenation exceptions out of 8191
+ 28i,4n,43p,797b,439s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\Maeva\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk> <C:\User
+s\Maeva\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2488.pk> <C:\Users\Maeva\AppData\Local\MiKTeX\2.
+9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2074.pk> <C:\Users\Maeva\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\d
+pi600\ecrm1000.pk> <C:\Users\Maeva\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk>
+Output written on TEST.pdf (4 pages, 57075 bytes).
+PDF statistics:
+ 176 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-Output written on TEST.dvi (4 pages, 7096 bytes).

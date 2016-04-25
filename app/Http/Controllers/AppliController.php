@@ -11,6 +11,7 @@ use App\Http\Requests\ContactFormRequest;
 use Auth;
 use URL;
 use Redirect;
+use Mail;
 
 use App\User;
 use App\Category;
@@ -131,10 +132,24 @@ class AppliController extends Controller
     public function contact(Request $request){
         $error = "";
         $post = $request->all();
+        $user = Auth::user();
 
         if(empty($post['email']) || empty($post["message"]) || strlen($post["message"]) < 8 ){
             $error = "Complete all the fields ( the message must be over 8 caracters )";
         }
+
+        $message_body = explode("\n", $post['message']);
+
+        Mail::send('emails.contact',
+            array(
+                'email' => $post['email'],
+                'object' => $post['object'],
+                'message_body' => $message_body
+             ), function($message)
+        {
+            $message->from('blindtestor@gmail.com');
+            $message->to(config('mail')["username"])->subject('[Contact] Nouveau message');
+        });
 
         return redirect()->to(URL::route('profil'). '#contact')->with('error', $error);
     }

@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'blindtestor@gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'blindtestor@gmail.com', 'name' => 'contact'],
 
     /*
     |--------------------------------------------------------------------------
@@ -108,4 +108,5 @@ return [
 
     'sendmail' => '/usr/sbin/sendmail -bs',
 
+    //'pretend' => false,
 ];
