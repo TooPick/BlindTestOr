@@ -37,10 +37,24 @@
 		</div>
 		<div id="panels" class="col-md-9 left">
 			<div id="profil">
-			<img src="{{ $user->avatar }}">
-			<p>Nom d'utilisateur : {{ $user->username }}</p>
-			<p>Email : {{ $user->email }}</p>
-			<p>Mot de passe : </p>
+
+				<div class="row">					
+
+					<div class="col-md-6">
+						<p>Nom d'utilisateur : {{ $user->username }}</p>
+						<p>Email : {{ $user->email }}</p>
+						<p>Mot de passe : ******** </p>
+					</div>
+
+					<div class ="col-md-3">
+						@if(empty($user->avatar)) 
+							<img src="upload/avatar/default/defaultAV.jpg" alt="some text" height="250px"> 
+						@else
+							<img src="{{ $user->avatar }}" height="250px">
+						@endif
+					</div>
+
+				</div>
 
 				
 			<role="presentation" id="edition" data-panel="editer"><a href="#" class="btn btn-primary">Editer</a></li>
