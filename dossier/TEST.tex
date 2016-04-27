@@ -13,7 +13,8 @@
 
 \usepackage[top=3.2cm, bottom=3.5cm, left=2.8cm, right=2.8cm]{geometry}
 
-
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
 \renewcommand{\thesection}{\arabic{section}}
 
 
@@ -21,27 +22,31 @@
 \section{Introduction} 
 \paragraph{} Ce projet a été réalisé dans le cadre de l'option \og Development web 2\fg{} à l'université Aix-Marseille pôle d'Aix-en-Provence dispensé par le professeur Sami Hilala. Cette option étant choisis pour le parcours Licence 3 - Informatique de l'université Aix-Marseille pôle Luminy, Marseille. Ce projet est une application web developpé par deux étudiants : Lauzier Maëva et Sanigou Alexandre. 
 
+\tableofcontents
+
+
 \part{Le projet}
-	\section{Qu'est ce que BlindTestOr ?}
+	\section{Cahier des charges}
+	\subsection{Qu'est ce que BlindTestOr ?}
 	
 	\paragraph{}BlindTestOr est le nom que nous avons choisis pour l'application web que nous avons developpé.En effet cette application reprend le principe d'un jeu populaire appellé \og BlindTest\fg{} dont le principe est très simple, quelqu'un passe un extrait d'une music choisis au hasard et plusieurs équipes s'affrontent pour trouver le nom de la musique et/ou l'auteur de celle-ci. Les gagnants étant ceux ayant le mieux répondu et le plus vite à la fin du jeu. BlindTestOr est donc l'application directe de ce jeu dans sa version en ligne. Le principe reste exactement le même, un lot de music est passé aléatoirement, les joueurs doivent deviner le nom et/ou l'auteur et des points leurs sont attribués. Le gagnant étant celui qui remporte le plus de points. 
 	
-	\section{Les modes de jeu} 
+	\subsection{Les modes de jeu} 
 	
 	\paragraph{}Nous avons developpé l'application de manière à proposer deux modes de jeu. Un mode multijoueur afin d'exploiter un mode en ligne et favoriser la compétition mais aussi un mode solo afin de pouvoir améliorer sa culture musicale de manière ludique. 
 	
-	\subsection{Le mode multi-joueur}
+	\subsubsection{Le mode multi-joueur}
 	\paragraph{} Le mode multi-joueur comme énoncé précédemment est un mode compétition où plusieurs joueurs peuvent s'affronter pour savoir celui qui à la meilleure culture musicale. Ce mode se déroule à travers un chat, ainsi les joueurs peuvent autant communiquer entre eux que répondre aux questions. Ainsi un extrait est joué , la question est posé et les joueurs peuvent répondre pendant 60sec pour donner la bonne réponse. 
-	\subsection{Le mode solo}
+	\subsubsection{Le mode solo}
 	\paragraph{} Le mode solo permet de jouer seul pour tester sa propre culture musicale. Le jeu de déroule de la même manière que le mode multijoueur, l'extrait est passé, la question est posé et le joueurs a 60 sec pour répondre. 
 	
-	\section{Les musiques} 
+	\subsection{Les musiques} 
 	\paragraph{} Les musiques sont passées aléatoirement pendant les parties en fonction d'une catégorie choisis en amont. Les catégories ont été pensé afin de pouvoir se retrouver dans un style de musique que l'on écoute et donc pouvoir répondre aux questions. Il est toujours possible cependant de choisir une catégorie \og random\fg{} afin de joué sur tout les styles de musique en même temps. 
 	
-	\section{Le déroulement type d'une partie} 
+	\subsection{Le déroulement type d'une partie} 
 	\paragraph{} Afin d'éviter de multiple redondance inutile, prenons le cas le plus complex, celui de la partie multi-joueur ( le cas d'un jeu solo ne différant qu'au niveau du nombre de joueur). 
 	
-		\paragraph{}Le joueur A s'inscrit/se connecte et choisis une catégorie parmis celle proposé. Admettons qu'il choisisse la catégorie \og Rock\fg{}, il est redirigé sur le salon de jeu correspondant à cette catégorie. Il est pour l'instant le seul joueur et attends la présence d'au moins 3 joueurs pour que la partie débute. 
+		\paragraph{}Le joueur A s'inscrit/se connecte et choisit une catégorie parmis celle proposées. Admettons qu'il choisisse la catégorie \og Rock\fg{}, il est redirigé sur le salon de jeu correspondant à cette catégorie. Il est pour l'instant le seul joueur et attends la présence d'au moins 3 joueurs pour que la partie débute. 
 		
 		\paragraph{}Les joueurs B et C ont eux aussi choisis la catégorie \og Rock\fg{} et vont donc s'affronter avec le joueur A. Si aucune autre arrivée dans le salon s'effectue le jeu peut commencer, le minimum de joueur requis étant présent. Pendant ce temps les joueurs peuvent discuter entre eux s'ils le souhaitent. 
 		
@@ -51,10 +56,10 @@
 		
 		\paragraph{}Le mode solo se diffère à cette étape dans le sens où simplement sont nombre de bonne réponse sur 10 est affiché et comptabilisé dans son historique. 
 
-\section{Les différentes fonctionnalités du jeu}
+\subsection{Les différentes fonctionnalités du jeu}
 \paragraph{} Afin d'être exhausitf certaines fonctionnalités explicitées ci-dessus étant plus importante seront surement répétées mais non developpées. 
 
-\subsection{Les utilisateurs}
+\subsubsection{Les utilisateurs}
 \begin{itemize}
 \item Inscription
 \item Connexion
@@ -63,19 +68,38 @@
 	\item Modifier avatar
 	\item Modifier mot de passe
 	\item Modifier email
-	\item Consulter historique de parties (statistique)
+	\item Consulter statistiques
 	\end{itemize}
 	\item Réponse libre
+\item Choisir un mode de jeu (solo/multi)
 \item Choisir une catégorie de musique
 \end{itemize}
 
-\subsection{Les administrateurs}
+\subsubsection{Les administrateurs}
 \begin{itemize}
 \item Ajouter / Editer / Supprimer une chanson
 \item Ajouter / Editer / Supprimer une catégorie de chanson 
-\item Définir un temps de réponse 
 \item Gestion des utilisateurs
 \end{itemize}
 
 
+\section{Réalisation du projet}
+\subsection{La base de données}
+\subsubsection{ Le Modèle Conceptuel des Données (MCD) }
+\subsubsection{Le Modèle Logique des Données(MLD)}
+
+\subsection{Le framework}
+\subsubsection{Pourquoi Laravel 5 ?}
+\subsubsection{Les apports de Laravel 5}
+
+\subsection{L'interface graphique}
+\subsection{L'utilisation de BootStrap}
+
+\subsection{L'hébergement}
+
+\section{Bilan de la réalisation}
+\subsection{L'implémentation finale des fonctionnalités}
+\subsection{Les difficultés rencontrées}
+
+\section{Conclusion}
 \end{document}

@@ -12,6 +12,8 @@ use Auth;
 use URL;
 use Redirect;
 use Mail;
+use Intervention\Image\Facades\Image as Image;
+use File;
 
 use App\User;
 use App\Category;
@@ -125,6 +127,14 @@ class AppliController extends Controller
                 $errors["password"] = "Password does not match";
             }
         }
+
+        if($request->hasFile('avatar')) {
+            $pathToFile = 'upload/avatar/'.$user->id. '.' .$request->file('avatar')->getClientOriginalExtension();            
+            Image::make($request->file('avatar'))->save($pathToFile);
+            //dd($pathToFile);
+            $user->avatar = $pathToFile;
+        }
+
         $user->save();
 
         return view('profil', array('user' => $user, 'errors' => $errors));

@@ -38,7 +38,7 @@
             <p><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCat" aria-expanded="false" aria-controls="collapseCat">Détails &raquo;</button></p>
             <div class="collapse" id="collapseCat">
                 <div class="well">
-                    Plusieures catégories sont disponibles afin de couvrir la plupart des styles musicaux et contenter tout le monde ! Il y a même un mode random ;)
+                    Plusieures catégories sont disponibles afin de couvrir la plupart des styles musicaux et contenter tout le monde ! 
                 </div>
             </div>
         </div>
