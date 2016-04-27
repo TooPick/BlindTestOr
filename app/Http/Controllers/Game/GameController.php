@@ -153,8 +153,11 @@ class GameController extends Controller
     {
         $data = $request->all();
 
-        $score = Score::where('game_id', $data['game_id'])->where('user_id', $data['user_id'])->first();
-        $score->delete();
+        $scores = Score::where('game_id', $data['game_id'])->where('user_id', $data['user_id'])->get();
+
+        foreach ($scores as $score) {
+            $score->delete();
+        }
 
         $nbPlayers = Score::where('game_id', $data['game_id'])->count();
 
@@ -231,10 +234,17 @@ class GameController extends Controller
 
         //Sauvegarde des scores
         $round_scores = json_decode($game->round_scores);
+        $isEnd = false;
         foreach ($round_scores as $winner) 
         {
             $score = Score::where('game_id', $data['game_id'])->where('user_id', $winner->user)->first();
             $score->score = $score->score + $winner->score;
+
+            if($score->score >= 15)
+            {
+                $isEnd = true;
+            }
+
             $score->save();
         }
 
@@ -249,8 +259,20 @@ class GameController extends Controller
 
         $result = array(
             "answer" => $answer,
+            "isEnd" => $isEnd,
         );
 
         return json_encode($result);
+    }
+
+    public function ajaxGetScores(Request $request)
+    {
+        $data = $request->all();
+
+        $game = Game::where('id', $data['game_id'])->first();
+
+        $scores = Score::where('game_id', $game->id)->with('user')->orderBy('score','asc')->get()->toArray();
+
+        return json_encode($scores);
     }
 }

@@ -53,6 +53,7 @@ Route::group(['middleware' => 'web'], function () {
 			Route::post('/ajax/addAction', array('as' => 'ajax.addAction', 'uses' => 'GameController@ajaxAddAction'));
 			Route::post('/ajax/setSong', array('as' => 'ajax.setSong', 'uses' => 'GameController@ajaxSetSong'));
 			Route::post('/ajax/endRound', array('as' => 'ajax.endRound', 'uses' => 'GameController@ajaxEndRound'));
+			Route::post('/ajax/getScores', array('as' => 'ajax.getScores', 'uses' => 'GameController@ajaxGetScores'));
 		});
 	});
 
