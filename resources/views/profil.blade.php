@@ -18,6 +18,12 @@
 			<strong>{{ Session::get("error") }}</strong>
 			</span>
 			@endif
+
+		@if(Session::get("success"))
+			<span class="help-block">
+			<strong>{{ Session::get("success") }}</strong>
+			</span>
+			@endif
     </div>
 	
 	<div class="row">

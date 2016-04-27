@@ -5,6 +5,7 @@
   Here are the details:
 </p>
 <ul>
+  <li>Nom: <strong>{{ $username }}</strong></li>
   <li>Email: <strong>{{ $email }}</strong></li>
   <li>Objet: <strong>{{ $object }}</strong></li>
 </ul>

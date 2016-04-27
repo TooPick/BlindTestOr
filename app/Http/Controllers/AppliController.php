@@ -137,22 +137,29 @@ class AppliController extends Controller
 
         if(empty($post['email']) || empty($post["message"]) || strlen($post["message"]) < 8 ){
             $error = "Complete all the fields ( the message must be over 8 caracters )";
+
+            return redirect()->to(URL::route('profil'). '#contact')->with('error', $error);
+        }else{
+
+            $message_body = explode("\n", $post['message']);
+
+            $username = $user->username;
+            $subject = '[Contact] Nouveau message : '.$username;
+
+            Mail::send('emails.contact',
+                array(
+                    'email' => $post['email'],
+                    'object' => $post['object'],
+                    'message_body' => $message_body,
+                    'username' => $username,
+                 ), function($message) use ($subject)
+            {
+                $message->from('blindtestor@gmail.com');
+                $message->to(config('mail')["username"])->subject($subject);
+            });
+
+            return redirect()->to(URL::route('profil'). '#contact')->with('success', 'Votre mail a bien été envoyé !');
         }
-
-        $message_body = explode("\n", $post['message']);
-
-        Mail::send('emails.contact',
-            array(
-                'email' => $post['email'],
-                'object' => $post['object'],
-                'message_body' => $message_body
-             ), function($message)
-        {
-            $message->from('blindtestor@gmail.com');
-            $message->to(config('mail')["username"])->subject('[Contact] Nouveau message');
-        });
-
-        return redirect()->to(URL::route('profil'). '#contact')->with('error', $error);
     }
 
 }
