@@ -73,6 +73,7 @@
 			var startDate = 0;
 			var previewLength = {{ $game->response_time }};
 			var end = false;
+			var isHost = {{ $isHost }} + 0;
 
 			//A la fermeture de la fenêtre
 			$(window).bind('beforeunload', function() {
@@ -282,7 +283,7 @@
 
 				function endPreview()
 				{
-					if(end == false)
+					if(isHost == 1 && end == false)
 					{
 						var time = Math.round(player.currentTime) - startDate;
 						if(time >= previewLength || time > player.duration)
