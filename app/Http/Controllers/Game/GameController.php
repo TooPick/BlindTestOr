@@ -261,7 +261,15 @@ class GameController extends Controller
         $game->save();
 
         $song = Song::where('id', $game->song_id)->first();
-        $answer = $song->artist;
+
+        switch ($game->question_type) {
+            case 0:
+                $answer = $song->artist;
+                break;
+            case 1:
+                $answer = $song->title;
+                break;
+        }
 
         $result = array(
             "answer" => $answer,
