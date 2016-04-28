@@ -283,7 +283,7 @@
 
 				function endPreview()
 				{
-					if(isHost == 1 && end == false)
+					if(end == false)
 					{
 						var time = Math.round(player.currentTime) - startDate;
 						if(time >= previewLength || time > player.duration)
@@ -291,38 +291,39 @@
 							end = true;
 							player.pause();
 
-							//15 secondes supplémentaires pour répondre
-							setTimeout(function(){
+							if(isHost == 1)
+							{
+								//15 secondes supplémentaires pour répondre
+								setTimeout(function(){
 
-								//End round
-								$.ajax({
-									url : '{{ URL::route("ajax.endRound") }}',
-									type : 'POST',
-									async : false,
-									data : {
-										"_token": "{{ csrf_token() }}",
-										"game_id": {{ $game->id }},
-									},
-									success : function(result, statut){
-										var result = $.parseJSON(result);
-										addAction('correctAnswer', result['answer']);
+									//End round
+									$.ajax({
+										url : '{{ URL::route("ajax.endRound") }}',
+										type : 'POST',
+										async : false,
+										data : {
+											"_token": "{{ csrf_token() }}",
+											"game_id": {{ $game->id }},
+										},
+										success : function(result, statut){
+											var result = $.parseJSON(result);
+											addAction('correctAnswer', result['answer']);
 
-										if(result['isEnd'])
-										{
-											setTimeout(function(){
-												addAction('endGame', '');
-											}, 2000);
+											if(result['isEnd'])
+											{
+												setTimeout(function(){
+													addAction('endGame', '');
+												}, 2000);
+											}
+											else
+											{
+												startRound();
+											}
 										}
-										else
-										{
-											startRound();
-										}
-									}
-								});
-								
-							}, 15000);
-
-							
+									});
+									
+								}, 15000);
+							}							
 						}
 					}
 				}
