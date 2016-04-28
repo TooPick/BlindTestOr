@@ -395,7 +395,8 @@
 					});
 				}
 
-				console.log("début : " + playlist);
+				console.log("début : ");
+				console.log(playlist);
 				//Choix random de la chanson
 				var rand = Math.floor(Math.random()*Object.keys(playlist).length);
 				console.log("random : " + rand);
@@ -404,7 +405,8 @@
 				playlist.splice(rand, 1);
 				console.log(selected);
 
-				console.log("fin : " + playlist);
+				console.log("fin : ");
+				console.log(playlist);
 
 				//Enregistrement de la musique random
 				$.ajax({
