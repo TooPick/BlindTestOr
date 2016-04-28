@@ -18,7 +18,7 @@
 
 		<div class="col-md-8">
 			<p>Règles : Répondez aux questions le plus vite possible pour gagner un maximum de points !</p>
-			<h3 class="text-center">Question : <span id="question">Qui chante cette chanson ?</span></h3>
+			<h3 class="text-center">Question : <span id="question">En attente du début de la partie...</span></h3>
 		</div>
 	</div>
 
@@ -63,11 +63,9 @@
 
 	<script type="text/javascript">
 		$(function() {
-        	//var last_update = moment().format("YYYY-MM-DD HH:mm:ss");
         	var last_update = null;
 
-			console.log(last_update);
-			var playlist = null;
+			var playlist = {};
 
 			var player = document.createElement('audio');
 
@@ -75,6 +73,7 @@
 			var startDate = 0;
 			var previewLength = {{ $game->response_time }};
 			var end = false;
+			var isHost = {{ $isHost }};
 
 			//A la fermeture de la fenêtre
 			$(window).bind('beforeunload', function() {
@@ -106,7 +105,7 @@
 						"parameter": parameter,
 					},
 					success : function(result, statut){
-						console.log(result);
+						console.log("addAction : " + action + " | parameter : " + parameter + " | " + result);
 					}
 				});
 			}
@@ -128,7 +127,6 @@
 						},
 						success : function(result, statut){
 							var result = $.parseJSON(result);
-							console.log(result);
 
 						   $('#chat-message').val('');
 						}
@@ -166,14 +164,13 @@
 
 			function addServerMessage(message)
 			{
-				var html = "<strong>" + message + "</strong>";
+				var html = "<p><strong>" + message + "</strong></p>";
 	            $('#chat').append(html);
 	            $('#chat').scrollTop($('#chat').prop("scrollHeight"));
 			}
 
 			function setQuestionType(type)
 			{
-				console.log("***********Type Question " + type);
 				switch(type)
 				{
 					case "0":
@@ -187,6 +184,7 @@
 
 			function makeAction(action, parameter)
 			{
+				console.log("action : " + action + " | parameter : " + parameter);
 				switch(action) {
 					case 'startMusic':
 						end = false;
@@ -199,7 +197,32 @@
 					case 'setQuestionType':
 						setQuestionType(parameter);
 						break;
+					case 'endGame':
+						addServerMessage("Fin de la partie !!");
+						diplayScores();
+						break;
 				}
+			}
+
+			function diplayScores()
+			{
+				$.ajax({
+					url : '{{ URL::route("ajax.getScores") }}',
+					type : 'POST',
+					data : {
+						"_token": "{{ csrf_token() }}",
+						"game_id": {{ $game->id }}
+					},
+					success : function(result, statut){
+						var result = $.parseJSON(result);
+						
+						$.each(result, function(key, value) {
+							addServerMessage(key+1 + " : <em style='color:green'>" + value["user"]["username"] + "</em> avec <em style='color:green'>" + value["score"] + "</em> point(s).")
+						});
+
+					}
+
+				});
 			}
 
 			//Mise à jour automatique
@@ -215,7 +238,7 @@
 					},
 					success : function(result, statut){
 						var result = $.parseJSON(result);
-						console.log(result);
+						console.log("autoUpdate : " + result);
 
 						var length = result["chats"].length;
 
@@ -268,20 +291,38 @@
 							end = true;
 							player.pause();
 
-							//End round
-							$.ajax({
-								url : '{{ URL::route("ajax.endRound") }}',
-								type : 'POST',
-								async : false,
-								data : {
-									"_token": "{{ csrf_token() }}",
-									"game_id": {{ $game->id }},
-								},
-								success : function(result, statut){
-									var result = $.parseJSON(result);
-									addAction('correctAnswer', result['answer']);
-								}
-							});
+							//15 secondes supplémentaires pour répondre
+							setTimeout(function(){
+
+								//End round
+								$.ajax({
+									url : '{{ URL::route("ajax.endRound") }}',
+									type : 'POST',
+									async : false,
+									data : {
+										"_token": "{{ csrf_token() }}",
+										"game_id": {{ $game->id }},
+									},
+									success : function(result, statut){
+										var result = $.parseJSON(result);
+										addAction('correctAnswer', result['answer']);
+
+										if(result['isEnd'])
+										{
+											setTimeout(function(){
+												addAction('endGame', '');
+											}, 2000);
+										}
+										else
+										{
+											startRound();
+										}
+									}
+								});
+								
+							}, 15000);
+
+							
 						}
 					}
 				}
@@ -326,32 +367,44 @@
 						random = Math.floor(player.duration - previewLength);
 
 					music.startDate = random;
-					addAction('startMusic', JSON.stringify(music));
+					setTimeout(function(){
+						addAction('startMusic', JSON.stringify(music));
+					}, 2000);
+					
 				}
 			}
 
-			$('#start-game').on('click', function(e) {
-				e.preventDefault();
+			function startRound()
+			{
+				console.log("key : " + Object.keys(playlist).length);
+				if(Object.keys(playlist).length <= 0)
+				{
+					//Récupération de la playlist
+					$.ajax({
+						url : '{{ URL::route("ajax.getPlaylist") }}',
+						type : 'POST',
+						async : false,
+						data : {
+							"_token": "{{ csrf_token() }}",
+							"game_id": {{ $game->id }}
+						},
+						success : function(result, statut){
+							var result = $.parseJSON(result);
+							playlist = result;
+						}
+					});
+				}
 
-				//$('#start-game').remove();
-
-				//Récupération de la playlist
-				$.ajax({
-					url : '{{ URL::route("ajax.getPlaylist") }}',
-					type : 'POST',
-					async : false,
-					data : {
-						"_token": "{{ csrf_token() }}",
-						"game_id": {{ $game->id }}
-					},
-					success : function(result, statut){
-						var result = $.parseJSON(result);
-						playlist = result;
-					}
-				});
-
+				console.log("début : " + playlist);
 				//Choix random de la chanson
-				selected = playlist[Math.floor(Math.random()*Object.keys(playlist).length)];
+				var rand = Math.floor(Math.random()*Object.keys(playlist).length);
+				console.log("random : " + rand);
+				console.log(playlist[rand]);
+				selected = playlist[rand];
+				playlist.splice(rand, 1);
+				console.log(selected);
+
+				console.log("fin : " + playlist);
 
 				//Enregistrement de la musique random
 				$.ajax({
@@ -365,7 +418,6 @@
 					},
 					success : function(result, statut){
 						var result = $.parseJSON(result);
-						console.log(result);
 
 						if(result["result"])
 						{
@@ -374,6 +426,15 @@
 						}
 					}
 				});
+			}
+
+			$('#start-game').on('click', function(e) {
+				e.preventDefault();
+
+				$('#start-game').remove();
+				$('#host-actions').remove();
+
+				startRound();
 			});
 		});
 	</script>

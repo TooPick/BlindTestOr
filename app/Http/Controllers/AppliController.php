@@ -50,7 +50,7 @@ class AppliController extends Controller
 
             //Recherche d'une partie multijoueur déjà commencée
             if($type == "multi")
-                $game = Game::where('category_id', $cat->id)->first();
+                $game = Game::where('category_id', $cat->id)->where('is_started', 0)->where('finished', 0)->first();
 
             $nbPlayers = 0;
 
@@ -108,7 +108,29 @@ class AppliController extends Controller
         $user = Auth::user();
         $errors = array();
 
-        return view('profil', array('user' => $user, 'errors' => $errors));
+        $scores = Score::where('user_id', $user->id)->with('game')->get()->toArray();
+
+        $stats = array(
+            'nb_solo_play'      => 0,
+            'nb_multi_play'     => 0,
+            'nb_win'            => 0,
+            'total_score'       => 0,
+        );
+
+        foreach ($scores as $score)
+        {
+            if($score['game']['type'] == 0)
+                $stats['nb_solo_play']++;
+            else
+                $stats['nb_multi_play']++;
+
+            if($score['score'] >= 15)
+                $stats['nb_win']++;
+        
+            $stats['total_score'] += $score['score'];
+        }
+
+        return view('profil', array('user' => $user, 'errors' => $errors, 'stats' => $stats));
     }
 
     public function profilPost(Request $request){

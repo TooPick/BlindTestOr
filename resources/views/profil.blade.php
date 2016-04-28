@@ -89,11 +89,11 @@
 
 			</div>
 			<div id="stats" >
-				<p>Nombre de partie jouée en mode solo : </p>
+				<p>Nombre de partie jouée en mode solo : {{ $stats['nb_solo_play'] }}</p>
 
-				<p>Nombre de partie jouée en mode multi : </p>
-				<p>Nombre de partie gagnée : </p>
-				<p>Nombre de points total : </p>
+				<p>Nombre de partie jouée en mode multi : {{ $stats['nb_multi_play'] }}</p>
+				<p>Nombre de partie gagnée : {{ $stats['nb_win'] }}</p>
+				<p>Nombre de points total : {{ $stats['total_score'] }}</p>
 				
 			</div>
 			<div id="contact">
