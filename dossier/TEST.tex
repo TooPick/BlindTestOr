@@ -84,22 +84,110 @@
 
 
 \section{Réalisation du projet}
+
 \subsection{La base de données}
 \subsubsection{ Le Modèle Conceptuel des Données (MCD) }
+
+	\begin{photo}
+		\begin{center}
+		\includegraphics[scale=0.4]{mld.jpg}
+		\caption{Modèle conceptuel des données de BlindTestOr}
+		\end{center}
+	\end{figure}
+
 \subsubsection{Le Modèle Logique des Données(MLD)}
+	
+	\begin{photo}
+		\begin{center}
+		\includegraphics[scale=0.4]{mld.jpg}
+		\caption{Modèle logique des données de BlindTestOr}
+		\end{center}
+	\end{photo}
+
 
 \subsection{Le framework}
 \subsubsection{Pourquoi Laravel 5 ?}
 \subsubsection{Les apports de Laravel 5}
+\subsubsection{L'hébergement}
 
 \subsection{L'interface graphique}
 \subsection{L'utilisation de BootStrap}
 
-\subsection{L'hébergement}
+\paragraph{} Pour l'interface utilisateur nous avons pris le partie d'utiliser un template bootstrap qui nous a facilité la tâche en terme de design, n'étant pas formé a developper notre sensibilité artistique bootstrap permet d'utiliser bon nombre de composant afin de rendre une interface propre et claire même sans connaissance en design. Nous avons ensuite modifier celui-ci pour le rendre en adéquation avec nos besoins. Nous avons choisis bootstrap pour la simple et bonne raison que c'est très simple d'utilisation, permet d'ajouter de nombreux effets de design et surtout est responsive. 
+\paragraph{} En annexe vous pourrez retrouver les différentes pages du site web, réalisées grâce à bootstrap. Comme vous pourrez le remarqué le thème est clair, minimaliste et s'adapte à tous type de support.   
+
+
 
 \section{Bilan de la réalisation}
 \subsection{L'implémentation finale des fonctionnalités}
+
+\paragraph{}Nous sommes très heureux de pouvoir annoncer que nous avons reussis à implémenter tout ce que nous avions prévu dans le temps impartit. Bien sûr on aurait pu rajouter quelques améliorations comme la gestion de compte premium et l'intégration de l'api paypal pour le paiement avec de fait une limitation du nombre de partie par joueur ou encore un mode de catégorie random afin de piocher dans chaque catégories de chansons. Cependant, bien que non implémenté ce sont des possibilités d'évolution du projet qui sont tous à fait réalisable dans la structure actuelle de celui-ci.
+
+
 \subsection{Les difficultés rencontrées}
 
-\part{Conclusion}
+\paragraph{}Nous avons fait face à plusieurs difficultés durant le projet, tout d'abord nous nous sommes demandé comment faire une interface graphique plaisante et professionnelle. Le réponse apporté fut l'utilisation de bootstrap comme évoqué ci-dessus. 
+\paragraph{}Ensuite, l'un des choix que nous avons pris est d'utilisé un framework que nous ne connaissions pas, Laravel 5. Cela, fut quelque peu laborieux au début à prendre en main. Cependant, l'utilisation de ce framework nous à par la suite épargné beaucoup de temps. 
+\paragraph{}Le jeu se déroulant à travers un chat en ajax, le principal enjeux était d'émulé une utilisation en temps réel. Ainsi nous avons du adapté notre stratégie afin d'envoyer des signaux aux différents joueurs pour coordonner leur action. 
+\paragraph{}Un autre enjeu, fut de trouver la meilleure manière de lancer et manipulé les fichiers audio sur navigateur. Pour cela nous avons utilisé une blibliothèque d'html5 prévu à cet effet. 
+ 
+\section{Conclusion}
+
+\appendix
+\part{Annexes}
+\section{Interface Graphique}
+
+
+\includegraphics [ scale=0.4]{home.png}
+\newline
+\centering
+\captionof{Page d'accueil du site}
+
+\vfill
+\includegraphics[scale=0.24]{login.png}
+\includegraphics[scale=0.24]{signin.png}
+\newline
+\captionof{Formulaire d'inscription et de connexion}
+\vfill 
+\vfill
+\includegraphics[scale=0.24]{profil.png}
+\includegraphics[scale=0.24]{profilContact.png}
+\newline
+\captionof{Interface gestion du profil de l'utilisateur}
+\vfill
+
+\includegraphics[scale=0.2]{Admin.png}
+\includegraphics[scale=0.2]{AdminUserPanel.png}
+\includegraphics[scale=0.2]{Admincat.png}
+\includegraphics[scale=0.2]{addcat.png}
+\includegraphics[scale=0.2]{Adminsong.png}
+\includegraphics[scale=0.2]{addsong.png}
+\newline
+\captionof{Interface administrateur}
+
+\vfill
+
+\vfill
+\includegraphics[scale=0.24]{game.png}
+\newline
+\captionof{Interface du jeu}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}

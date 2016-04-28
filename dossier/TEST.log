@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.4.25)  27 APR 2016 15:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.4.25)  28 APR 2016 17:58
 entering extended mode
 **./TEST.tex
 (TEST.tex
@@ -279,23 +279,241 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 ] [3
 
-] [4] [5] [6] (TEST.aux) ) 
+] [4]
+
+! LaTeX Error: Environment photo undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.91 	\begin{photo}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+<mld.jpg, id=20, 1080.035pt x 557.08125pt>
+File: mld.jpg Graphic file (type jpg)
+ <use mld.jpg>
+Package pdftex.def Info: mld.jpg used on input line 93.
+(pdftex.def)             Requested size: 432.00635pt x 222.82855pt.
+
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.94 		\caption
+               {Modèle conceptuel des données de BlindTestOr}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[5]
+! Extra }, or forgotten \endgroup.
+\@endfloatbox ...pagefalse \outer@nobreak \egroup 
+                                                  \color@endbox 
+l.96 	\end{figure}
+                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+! LaTeX Error: \begin{document} ended by \end{figure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.96 	\end{figure}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Environment photo undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.100 	\begin{photo}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+File: mld.jpg Graphic file (type jpg)
+<use mld.jpg>
+Package pdftex.def Info: mld.jpg used on input line 102.
+(pdftex.def)             Requested size: 432.00635pt x 222.82855pt.
+
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.103 		\caption
+                {Modèle logique des données de BlindTestOr}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: \begin{document} ended by \end{photo}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.105 	\end{photo}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[6 <./mld.jpg>] [7] [8] [9
+
+] <home.png, id=37, 941.01563pt x 589.4522pt>
+File: home.png Graphic file (type png)
+ <use home.png>
+Package pdftex.def Info: home.png used on input line 141.
+(pdftex.def)             Requested size: 376.39958pt x 235.7767pt.
+
+! Undefined control sequence.
+l.144 \captionof
+                {Page d'accueil du site}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+<login.png, id=39, 892.08281pt x 385.44pt>
+File: login.png Graphic file (type png)
+ <use login.png>
+Package pdftex.def Info: login.png used on input line 147.
+(pdftex.def)             Requested size: 214.10425pt x 92.50748pt.
+ <signin.png, id=40, 913.91437pt x 456.20438pt>
+File: signin.png Graphic file (type png)
+
+<use signin.png>
+Package pdftex.def Info: signin.png used on input line 148.
+(pdftex.def)             Requested size: 219.34392pt x 109.49127pt.
+
+! Undefined control sequence.
+l.150 \captionof
+                {Formulaire d'inscription et de connexion}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+<profil.png, id=41, 934.99312pt x 470.50781pt>
+File: profil.png Graphic file (type png)
+ <use profil.png>
+Package pdftex.def Info: profil.png used on input line 153.
+(pdftex.def)             Requested size: 224.40292pt x 112.92418pt.
+ <profilContact.png, id=42, 904.88063pt x 599.23875pt>
+File: profilContact.png Graphic file (type png)
+
+<use profilContact.png>
+Package pdftex.def Info: profilContact.png used on input line 154.
+(pdftex.def)             Requested size: 217.17578pt x 143.82024pt.
+
+! Undefined control sequence.
+l.156 \captionof
+                {Interface gestion du profil de l'utilisateur}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+<Admin.png, id=43, 910.90312pt x 243.15843pt>
+File: Admin.png Graphic file (type png)
+ <use Admin.png>
+Package pdftex.def Info: Admin.png used on input line 159.
+(pdftex.def)             Requested size: 182.1774pt x 48.63081pt.
+ <AdminUserPanel.png, id=44, 930.47626pt x 438.13687pt>
+File: AdminUserPanel.png Graphic file (type png)
+
+<use AdminUserPanel.png>
+Package pdftex.def Info: AdminUserPanel.png used on input line 160.
+(pdftex.def)             Requested size: 186.09195pt x 87.62581pt.
+ <Admincat.png, id=45, 949.29657pt x 618.05907pt>
+File: Admincat.png Graphic file (type png)
+ <use Admincat.png>
+Package pdftex.def Info: Admincat.png used on input line 161.
+(pdftex.def)             Requested size: 189.85594pt x 123.60962pt.
+
+<addcat.png, id=46, 941.01563pt x 465.99094pt>
+File: addcat.png Graphic file (type png)
+ <use addcat.png>
+Package pdftex.def Info: addcat.png used on input line 162.
+(pdftex.def)             Requested size: 188.19978pt x 93.19653pt.
+File: Admincat.png Graphic file (type png)
+ <use Admincat.png>
+Package pdftex.def Info: Admincat.png used on input line 163.
+(pdftex.def)             Requested size: 189.85594pt x 123.60962pt.
+
+<addsong.png, id=47, 954.56625pt x 682.04813pt>
+File: addsong.png Graphic file (type png)
+ <use addsong.png>
+Package pdftex.def Info: addsong.png used on input line 164.
+(pdftex.def)             Requested size: 190.90987pt x 136.4072pt.
+
+! Undefined control sequence.
+l.166 \captionof
+                {Interface administrateur}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[10 <./home.png> <./login.png> <./signin.png> <./profil.png> <./profilContact.png>]
+<game.png, id=56, 901.86937pt x 633.86812pt>
+File: game.png Graphic file (type png)
+ <use game.png>
+Package pdftex.def Info: game.png used on input line 171.
+(pdftex.def)             Requested size: 216.45306pt x 152.13145pt.
+
+! Undefined control sequence.
+l.173 \captionof
+                {Interface du jeu}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[11 <./Admin.png> <./AdminUserPanel.png> <./Admincat.png> <./addcat.png> <./addsong.png> <./game.png>] (TEST.aux) ) 
 Here is how much of TeX's memory you used:
- 3611 strings out of 493634
- 48339 string characters out of 3143744
- 124921 words of memory out of 3000000
- 6964 multiletter control sequences out of 15000+200000
+ 3675 strings out of 493634
+ 49233 string characters out of 3143744
+ 123921 words of memory out of 3000000
+ 7014 multiletter control sequences out of 15000+200000
  11358 words of font info for 24 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 28i,4n,43p,797b,439s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\Maeva\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\
-Users\Maeva\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2074.pk> <C:\Users\Maeva\AppData\Local\MiKTe
-X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk> <C:\Users\Maeva\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
-ec\dpi600\ecbx2488.pk> <C:\Users\Maeva\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\User
-s\Maeva\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk>
-Output written on TEST.pdf (6 pages, 81302 bytes).
+ 28i,5n,43p,797b,439s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\
+Users\Maeva\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\Users\Maeva\AppData\Local\MiKTe
+X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2074.pk> <C:\Users\Maeva\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
+ec\dpi600\ecbx1200.pk> <C:\Users\Maeva\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2488.pk> <C:\User
+s\Maeva\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\Users\Maeva\AppData\Local\MiKTeX\2.
+9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk>
+Output written on TEST.pdf (11 pages, 710936 bytes).
 PDF statistics:
- 246 PDF objects out of 1000 (max. 8388607)
+ 305 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 
