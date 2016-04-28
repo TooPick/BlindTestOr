@@ -30,6 +30,7 @@ class PasswordController extends Controller
      */
     public function __construct()
     {
+        $this->subject = 'Changement de mot de passe';
         $this->middleware('guest');
     }
 }

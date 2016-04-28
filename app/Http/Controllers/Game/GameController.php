@@ -152,23 +152,27 @@ class GameController extends Controller
     public function ajaxExitGame(Request $request)
     {
         $data = $request->all();
+        $game = Game::find($data['game_id']);
 
-        $scores = Score::where('game_id', $data['game_id'])->where('user_id', $data['user_id'])->get();
-
-        foreach ($scores as $score) {
-            $score->delete();
-        }
-
-        $nbPlayers = Score::where('game_id', $data['game_id'])->count();
-
-        if($nbPlayers <= 0)
+        if(!$game->finished)
         {
-            $game = Game::where('id', $data['game_id']);
-            $chats = Chat::where('game_id', $data['game_id']);
-            $chats->delete();
-            $actions = Action::where('game_id', $data['game_id']);
-            $actions->delete();
-            $game->delete();
+            $scores = Score::where('game_id', $data['game_id'])->where('user_id', $data['user_id'])->get();
+
+            foreach ($scores as $score) {
+                $score->delete();
+            }
+
+            $nbPlayers = Score::where('game_id', $data['game_id'])->count();
+
+            if($nbPlayers <= 0)
+            {
+                $game = Game::where('id', $data['game_id']);
+                $chats = Chat::where('game_id', $data['game_id']);
+                $chats->delete();
+                $actions = Action::where('game_id', $data['game_id']);
+                $actions->delete();
+                $game->delete();
+            }
         }
     }
 
@@ -215,6 +219,7 @@ class GameController extends Controller
         $question = random_int(0, 1);
 
         $game->question_type = $question;
+        $game->is_started = 1;
 
         $game->save();
 
@@ -243,6 +248,7 @@ class GameController extends Controller
             if($score->score >= 15)
             {
                 $isEnd = true;
+                $game->finished = 1;
             }
 
             $score->save();
