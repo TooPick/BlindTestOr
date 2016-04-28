@@ -73,7 +73,6 @@
 			var startDate = 0;
 			var previewLength = {{ $game->response_time }};
 			var end = false;
-			var isHost = {{ $isHost }};
 
 			//A la fermeture de la fenêtre
 			$(window).bind('beforeunload', function() {
