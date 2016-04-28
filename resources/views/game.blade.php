@@ -12,7 +12,6 @@
 
 	<div class="row">
 		<div id="timers" class="col-md-4">
-			<p>Prochain round dans : <span id="timer-next-round">00:20</span> minutes.</p>
 			<p>Temps de l'écoute : <span id="preview-time">{{ $game->response_time }}</span> secondes.</p>
 		</div>
 
@@ -322,7 +321,7 @@
 										}
 									});
 									
-								}, 15000);
+								}, 5000);
 							}							
 						}
 					}

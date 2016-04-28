@@ -285,7 +285,7 @@ class GameController extends Controller
 
         $game = Game::where('id', $data['game_id'])->first();
 
-        $scores = Score::where('game_id', $game->id)->with('user')->orderBy('score','asc')->get()->toArray();
+        $scores = Score::where('game_id', $game->id)->with('user')->orderBy('score','desc')->get()->toArray();
 
         return json_encode($scores);
     }
