@@ -416,7 +416,7 @@
 					data : {
 						"_token": "{{ csrf_token() }}",
 						"game_id": {{ $game->id }},
-						"song_id": selected.id,
+						"song_id": selected.song_id,
 					},
 					success : function(result, statut){
 						var result = $.parseJSON(result);
